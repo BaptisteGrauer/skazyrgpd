@@ -2,6 +2,36 @@
 
 <script src="wp-content/plugins/skazy-rgpd/tarteaucitron.js"></script>
 
+<?php 
+
+$tarteaucitronDefaultSettings = 
+    ["tarteaucitron_privacyUrl" => "",
+    "tarteaucitron_bodyPosition" => "bottom",
+    "tarteaucitron_hashtag" => "#tarteaucitron",
+    "tarteaucitron_cookiename" => "tarteaucitron",
+    "tarteaucitron_orientation" => "middle",
+    "tarteaucitron_groupServices" => "false",
+    "tarteaucitron_serviceDefaultState" => "wait",
+    "tarteaucitron_showAlertSmall" => "false",
+    "tarteaucitron_cookieslist" => "false",
+    "tarteaucitron_showIcon" => "true",
+    "tarteaucitron_iconSrc" => "",
+    "tarteaucitron_iconPosition" => "BottomRight",
+    "tarteaucitron_adblocker" => "false",
+    "tarteaucitron_DenyAllCta" => "true",
+    "tarteaucitron_AcceptAllCta" => "true",
+    "tarteaucitron_highPrivacy" => "true",
+    "tarteaucitron_handleBrowserDNTRequest" => "false",
+    "tarteaucitron_removeCredit" => "false",
+    "tarteaucitron_moreInfoLink" => "true",
+    "tarteaucitron_useExternalCss" => "false",
+    "tarteaucitron_useExternalJs" => "false",
+    "tarteaucitron_cookieDomain" => "",
+    "tarteaucitron_readmoreLink" => "",
+    "tarteaucitron_mandatory" => "true",
+    "tarteaucitron_mandatoryCta" => "true"];
+
+echo '
 <script>
 tarteaucitron.init({
     "privacyUrl": "", /* Privacy policy url */
@@ -42,7 +72,10 @@ tarteaucitron.init({
     "mandatory": true, /* Show a message about mandatory cookies */
     "mandatoryCta": true /* Show the disabled accept button when mandatory on */
 });
+</script>
+';?>
 
+<script>
 // Google Analytics
 
 tarteaucitron.user.gtagUa = 'G-XXXXXXXXX'; // A modifier avec le tag correspondant
