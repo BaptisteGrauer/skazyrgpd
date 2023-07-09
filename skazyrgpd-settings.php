@@ -290,7 +290,7 @@ $Settings =
                 ],
             ];
 
-global $bpdb;
+global $wpdb;
 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
 $query = "INSERT INTO $skazyrgpd_db 
 (setting_name, setting_description, setting_value, setting_default_value, setting_type, setting_select_possible_values) 
@@ -305,7 +305,7 @@ foreach($Settings as $setting){
     $value = "(\"$settingName\", \"$settingDesc\", \"$settingVal\", \"$settingDef\", \"$settingType\", ";
     if (gettype($settingSelect) == "array") {
         $settingPossibleVals =  "[";
-        for($i = 0; count($settingSelect); $i++) {
+        for($i = 0; $i < count($settingSelect); $i++) {
             if(isset($settingSelect[$i +1])){
                 $settingPossibleVals .= "'" . $settingSelect[$i] . "', ";
             }
