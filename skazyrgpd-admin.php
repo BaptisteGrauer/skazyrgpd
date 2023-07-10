@@ -1,4 +1,5 @@
 <?php 
+
 if (isset($_GET['reset'])) {
     skazyrgpd_reset_settings();
 }
@@ -7,6 +8,16 @@ if (isset($_GET['db-install'])){
 }
 
 global $wpdb;
+$skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+if($_SERVER['REQUEST_METHOD'] == "POST"){ // MAJ des modifications sur la bdd
+    $query = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db", ARRAY_N);
+    foreach($query as $setting){
+        $name = $setting[0];
+        $value = $_POST[$setting[0]];
+        $wpdb->get_results("UPDATE $skazyrgpd_db SET setting_value='$value' WHERE setting_name='$name'");
+    }
+}
+
 function skazyrgpd_display_settings($results){ // Prends en paramètre le résultat d'une requête SQL
     foreach ($results as $result) {
         $setting_name = $result[0];
@@ -28,7 +39,7 @@ function skazyrgpd_display_settings($results){ // Prends en paramètre le résul
             $setting_select_possible_values = str_replace("'", "", $setting_select_possible_values);
             $setting_select_possible_values = str_replace("[", "", $setting_select_possible_values);
             $setting_select_possible_values = str_replace("]", "", $setting_select_possible_values);
-            $setting_select_possible_values = str_replace(" ", "", $setting_select_possible_values);
+            $setting_select_possible_values = str_replace(" ", "", $setting_select_possible_values); // à retirer s'il y aurait des espaces dans les paramètres
             foreach ($setting_select_possible_values as $setting_select_possible_value) {
                 if ($setting_select_possible_value == $setting_value) {
                     echo "<option value='$setting_select_possible_value' selected>$setting_select_possible_value</option>";
@@ -72,7 +83,8 @@ function skazyrgpd_reset_settings(){
     }
 
     echo "<script> window.history.replaceState({}, document.title, '/' + 'wp-admin/admin.php?page=skazyrgpd-admin');
-    location.reload();</script>";
+    
+    location.reload(true);</script>";
 }
 function skazyrgpd_install_db(){
     global $wpdb;
@@ -125,9 +137,7 @@ function skazyrgpd_install_db(){
         $values[] = $value;
     }
     $query .= implode(", ", $values). ";";
-    if($wpdb->get_results("$query") == true){
-        echo "La base de données à été installée avec succès";
-    }
+    echo "<script>location.reload(true);</script>";
 }
 
 $Settings = 
@@ -390,15 +400,12 @@ $Settings =
 ];
 
 ?>
-
 <div class="wrap">
     <h1>Paramètres Tarteaucitron</h1>
     <form method="post" action="<?php echo "admin.php?page=skazyrgpd-admin"?>">
         <h2>Général</h2>
-        <?php
-            submit_button();?>
-            <?php 
-            global $wpdb;
+        <input type='submit' class='button button-primary' value='Enregistrer les modifications'><br><br>
+        <?php 
             include 'skazyrgpd-settings.php';
             $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
             $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
@@ -406,29 +413,20 @@ $Settings =
         ?>
         <h2>Apparence</h2>
         <?php 
-            global $wpdb;
             include 'skazyrgpd-settings.php';
             $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
             $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='apparence'", ARRAY_N);
             skazyrgpd_display_settings($results);
-            submit_button(); 
         ?>
-        <h2>Paramètres plugin</h2>
-        <input name='reset' class='button' value='Réinitialiser les paramètres'>
-        <input name='db-install' class='button' value='Installer / réinitialiser la BDD'>
-        <br>
-        <?php
-        //echo $query; //affiche la requête SQL pour créer la base de données
-        if($_SERVER['REQUEST_METHOD'] == "POST"){ // MAJ des modifications sur la bdd
-            $query = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db", ARRAY_N);
-            foreach($query as $setting){
-                $name = $setting[0];
-                $value = $_POST[$setting[0]];
-                $wpdb->get_results("UPDATE $skazyrgpd_db SET setting_value='$value' WHERE setting_name='$name'");
-            }
-        }
-        ?>
+        <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
     </form>
+    <h2>Paramètres plugin</h2>
+    <input name='reset' class='button button-primary' value='Réinitialiser les paramètres'>
+    <input name='db-install' class='button button-primary' value='Installer / réinitialiser la BDD'>
+    <br>
+    <?php
+    //echo $query; //affiche la requête SQL pour créer la base de données
+    ?>
 </div>
 <script>
     document.querySelector("input[name='reset']").addEventListener("click", function(){
@@ -438,7 +436,7 @@ $Settings =
     });
     document.querySelector("input[name='db-install']").addEventListener("click", function(){
         if(confirm("Voulez-vous vraiment réinstaller la base de données ?")){
-            window.location.href = "<?= get_site_url() ?>/wp-admin/admin.php?page=skazyrgpd-admin&reset=true";
+            window.location.href = "<?= get_site_url() ?>/wp-admin/admin.php?page=skazyrgpd-admin&db-install=true";
         }
     });
 </script>
