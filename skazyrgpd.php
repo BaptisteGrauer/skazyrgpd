@@ -23,10 +23,6 @@ function skazyrgpd_admin_submenu () {
 function skazyrgpd_init_main_admin_page() { // Hook d'initialisation de la page admin
     add_menu_page('Skazy RGPD - Général','Skazy RGPD','manage_options', "skazyrgpd-admin", "skazyrgpd_admin_main");
 }
-function skazyrgpd_init_sub_admin_page() {
-    add_submenu_page("skazyrgpd-admin", "Skazy RGPD - Base de donnée", "Base de données", 'manage_options', "skazyrgpd-admin-db", "skazyrgpd_admin_submenu");
-}
 
 add_action('admin_menu','skazyrgpd_init_main_admin_page'); // Ajout de la page admin
-add_action('admin_menu','skazyrgpd_init_sub_admin_page'); // 
 add_action('wp_head', 'skazyrgpd_init'); // Initialisation du plugin

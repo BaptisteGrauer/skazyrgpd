@@ -69,6 +69,7 @@ $Settings =
                     "Valeur par défaut"
                     "Type de paramètre"
                     "Valeurs possibles si type 'select'"
+                    "Catégorie du paramètre"
                 ]
                 */
                 [
@@ -77,7 +78,8 @@ $Settings =
                     "#aaaaaa",
                     "#aaaaaa",
                     "color",
-                    ""
+                    "",
+                    "apparence"
                 ],
                 [
                     "textColor",
@@ -85,7 +87,8 @@ $Settings =
                     "#000000",
                     "#000000",
                     "color",
-                    ""
+                    "",
+                    "apparence"
                 ],
                 [
                     "privacyUrl",
@@ -93,7 +96,8 @@ $Settings =
                     "" ,
                     "", 
                     "text", 
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "bodyPosition",
@@ -101,7 +105,8 @@ $Settings =
                     "bottom",
                     "bottom",
                     "select",
-                    ["top","bottom"]
+                    ["top","bottom"],
+                    "général"
                 ],
                 [
                     "hashtag",
@@ -109,7 +114,8 @@ $Settings =
                     "#tarteaucitron",
                     "#tarteaucitron",
                     "text", 
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "cookieName",
@@ -117,7 +123,8 @@ $Settings =
                     "tarteaucitron",
                     "tarteaucitron",
                     "text",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "orientation",
@@ -125,7 +132,8 @@ $Settings =
                     "middle",
                     "middle",
                     "select",
-                    ["top", "bottom", "middle", "popup"]
+                    ["top", "bottom", "middle", "popup"],
+                    "général"
                 ],
                 [
                     "groupServices",
@@ -133,7 +141,8 @@ $Settings =
                     "false",
                     "false",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "serviceDefaultState",
@@ -141,7 +150,8 @@ $Settings =
                     "wait",
                     "wait",
                     "select",
-                    ["true", "wait", "false"]
+                    ["true", "wait", "false"],
+                    "général"
                 ],
                 [
                     "showAlertSmall",
@@ -149,7 +159,8 @@ $Settings =
                     "false",
                     "false",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "cookieslist ",
@@ -157,7 +168,8 @@ $Settings =
                     "false",
                     "false",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "showIcon",
@@ -165,7 +177,8 @@ $Settings =
                     "true",
                     "true",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
 
@@ -174,7 +187,8 @@ $Settings =
                     "",
                     "",
                     "text",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "iconPosition",
@@ -182,7 +196,8 @@ $Settings =
                     "BottomLeft",
                     "BottomLeft",
                     "select",
-                    ["TopLeft","TopRight","BottomLeft","BottomRight"]
+                    ["TopLeft","TopRight","BottomLeft","BottomRight"],
+                    "général"
                 ],
                 [
                     "adblocker",
@@ -190,7 +205,8 @@ $Settings =
                     "false",
                     "false",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "denyAllCta",
@@ -198,7 +214,8 @@ $Settings =
                     "true",
                     "true",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "acceptAllCta",
@@ -206,7 +223,8 @@ $Settings =
                     "true",
                     "true",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "highPrivacy",
@@ -214,7 +232,8 @@ $Settings =
                     "true",
                     "true",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "handleBrowserDNTRequest",
@@ -222,7 +241,8 @@ $Settings =
                     "false",
                     "false",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "removeCredit ",
@@ -230,7 +250,8 @@ $Settings =
                     "false",
                     "false",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "moreInfoLink",
@@ -238,7 +259,8 @@ $Settings =
                     "true",
                     "true",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "useExternalCss",
@@ -246,7 +268,8 @@ $Settings =
                     "false",
                     "false",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "useExternalJs ",
@@ -254,7 +277,8 @@ $Settings =
                     "false",
                     "false",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "cookieDomain",
@@ -262,7 +286,8 @@ $Settings =
                     "",
                     "",
                     "text",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "readmoreLink",
@@ -270,7 +295,8 @@ $Settings =
                     "",
                     "",
                     "text",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "mandatory",
@@ -278,7 +304,8 @@ $Settings =
                     "true",
                     "true",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
                 [
                     "mandatoryCta",
@@ -286,7 +313,8 @@ $Settings =
                     "true",
                     "true",
                     "checkbox",
-                    ""
+                    "",
+                    "général"
                 ],
             ];
 
@@ -295,7 +323,7 @@ $Settings =
 global $wpdb;
 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
 $query = "INSERT INTO $skazyrgpd_db 
-(setting_name, setting_description, setting_value, setting_default_value, setting_type, setting_select_possible_values) 
+(setting_name, setting_description, setting_value, setting_default_value, setting_type, setting_select_possible_values, setting_category) 
 VALUES ";
 foreach($Settings as $setting){
     $settingName = $setting[0];
@@ -304,6 +332,7 @@ foreach($Settings as $setting){
     $settingDef = $setting[3];
     $settingType = $setting[4];
     $settingSelect = $setting[5];
+    $settingCategory = $setting[6];
     $value = "(\"$settingName\", \"$settingDesc\", \"$settingVal\", \"$settingDef\", \"$settingType\", ";
     if (gettype($settingSelect) == "array") {
         $settingPossibleVals =  "[";
@@ -316,9 +345,9 @@ foreach($Settings as $setting){
             }
         }
         $settingPossibleVals .= "]";
-        $value .= "\"$settingPossibleVals\")";
+        $value .= "\"$settingPossibleVals\", \"$settingCategory\")";
     } else {
-        $value .= "\"\")";
+        $value .= "\"\", \"$settingCategory\")";
     }
     $values[] = $value;
 }

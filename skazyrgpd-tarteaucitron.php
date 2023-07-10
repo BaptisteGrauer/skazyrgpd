@@ -6,14 +6,21 @@ tarteaucitron.init({
 require_once 'skazyrgpd-settings.php';
 global $wpdb;
 $skazyrgpd_db = $wpdb->prefix."skazyrgpd";
-$getSettings = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db", ARRAY_N);
+$getSettings = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
+$c = 0;
 foreach($getSettings as $setting){
-    //var_dump($setting);
     $name = $setting[0];
-    //echo $name;
     $value = $setting[1];
-    //echo $value;
-    echo "'$name' : '$value',\n";
+    if($name == "iconSrc" OR $name == "cookieDomain"){
+        echo "//";
+    }
+    if(isset($getSettings[$c+1])){
+        echo "\"$name\" : \"$value\",\n";
+    }
+    else {
+        echo "\"$name\" : \"$value\"\n";
+    }
+    $c++;
 }
 ?>
 });
