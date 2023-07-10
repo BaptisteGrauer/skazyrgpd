@@ -1,9 +1,5 @@
 <div class="wrap">
     <h1>Paramètres Tarteaucitron</h1>
-    <h2>Base de données</h2>
-    <form method="post" action="../wp-content/plugins/skazyrgpd/skazyrgpd-db-install.php">
-        <input class="button" type="submit" value="Créer la base de donnée">
-    </form>
     <h2>Général</h2>
     <form method="post" action="">
         <?php
@@ -54,3 +50,15 @@
                 }
             }
         }
+        //echo $query; //affiche la requête SQL pour créer la base de données
+        echo plugin_dir_path(__FILE__)
+        ?>
+    </form>
+    <ul>
+        <?php
+        foreach ($SettingsTo as $desc => $setting) {
+            echo "<li>" . $desc . " : " . $setting . "</li>";
+        }
+        ?>
+    </ul>
+</div>

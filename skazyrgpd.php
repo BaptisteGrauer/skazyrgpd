@@ -13,9 +13,20 @@ function skazyrgpd_init() { // Hook d'initilisation du plugin
     require_once "skazyrgpd-tarteaucitron.php";
 }
 
-function skazyrgpd_init_admin_page() { // Hook d'initialisation de la page admin
-    add_menu_page('Paramètres Skazy RGPD','Skazy RGPD','manage_options', plugin_dir_path(__FILE__) . "skazyrgpd-admin.php");
+function skazyrgpd_admin_main () {
+    require_once "skazyrgpd-admin.php";
+}
+function skazyrgpd_admin_submenu () {
+    require_once "skazyrgpd-db-install.php";
 }
 
-add_action('admin_menu','skazyrgpd_init_admin_page'); // Ajout de la page admin
+function skazyrgpd_init_main_admin_page() { // Hook d'initialisation de la page admin
+    add_menu_page('Skazy RGPD - Général','Skazy RGPD','manage_options', "skazyrgpd-admin", "skazyrgpd_admin_main");
+}
+function skazyrgpd_init_sub_admin_page() {
+    add_submenu_page("skazyrgpd-admin", "Skazy RGPD - Base de donnée", "Installer la base de données", 'manage_options', "skazyrgpd-admin-db", "skazyrgpd_admin_submenu");
+}
+
+add_action('admin_menu','skazyrgpd_init_main_admin_page'); // Ajout de la page admin
+add_action('admin_menu','skazyrgpd_init_sub_admin_page'); // 
 add_action('wp_head', 'skazyrgpd_init'); // Initialisation du plugin
