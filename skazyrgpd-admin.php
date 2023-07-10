@@ -1,13 +1,13 @@
 <div class="wrap">
     <h1>Paramètres Tarteaucitron</h1>
     <h2>Général</h2>
-    <form method="post" action="">
+    <form method="post" action="<?php echo "admin.php?page=skazyrgpd-admin"?>">
         <?php
         global $wpdb;
         include 'skazyrgpd-settings.php';
         $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
         $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db", ARRAY_N);
-        
+        submit_button();
 
         foreach ($results as $result) {
             $setting_name = $result[0];
@@ -41,24 +41,35 @@
             } else if ($setting_type == "textarea") {
                 echo "<label for='$setting_name'>$setting_description</label><br>";
                 echo "<textarea name='$setting_name'>$setting_value</textarea><br>";
-            } else if ($setting_type == "checkbox") {
-                echo "<label for='$setting_name'>$setting_description</label><br>";
+            } else if ($setting_type == "radio") {
+                echo "<label for='$setting_name'>$setting_description</label><br><div>";
                 if ($setting_value == "true") {
-                    echo "<input type='checkbox' name='$setting_name' value='true' checked><br>";
+                    echo "<input type='radio' name='$setting_name' value='true' checked> Oui<br>";
+                    echo "<input type='radio' name='$setting_name' value='false'> Non</div>";
                 } else {
-                    echo "<input type='checkbox' name='$setting_name' value='true'><br>";
+                    echo "<input type='radio' name='$setting_name' value='true'> Oui<br>";
+                    echo "<input type='radio' name='$setting_name' value='false' checked> Non</div>";
                 }
             }
+            echo "<br>";
         }
         //echo $query; //affiche la requête SQL pour créer la base de données
-        echo plugin_dir_path(__FILE__)
+        submit_button();
+        if($_SERVER['REQUEST_METHOD'] == "POST"){ // MAJ des modifications sur la bdd
+            $query = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db", ARRAY_N);
+            foreach($query as $setting){
+                $name = $setting[0];
+                $value = $_POST[$setting[0]];
+                $wpdb->get_results("UPDATE $skazyrgpd_db SET setting_value='$value' WHERE setting_name='$name'");
+            }
+        }
         ?>
     </form>
-    <ul>
+    <!-- <ul>
         <?php
         foreach ($SettingsTo as $desc => $setting) {
             echo "<li>" . $desc . " : " . $setting . "</li>";
         }
         ?>
-    </ul>
+    </ul> -->
 </div>

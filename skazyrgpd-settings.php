@@ -290,6 +290,8 @@ $Settings =
                 ],
             ];
 
+            
+
 global $wpdb;
 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
 $query = "INSERT INTO $skazyrgpd_db 
