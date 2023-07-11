@@ -6,7 +6,6 @@ if (isset($_GET['reset'])) {
 if (isset($_GET['db-install'])){
     skazyrgpd_install_db();
 }
-
 global $wpdb;
 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
 if($_SERVER['REQUEST_METHOD'] == "POST"){ // MAJ des modifications sur la bdd
@@ -17,7 +16,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){ // MAJ des modifications sur la bdd
         $wpdb->get_results("UPDATE $skazyrgpd_db SET setting_value='$value' WHERE setting_name='$name'");
     }
 }
-
 function skazyrgpd_display_settings($results){ // Prends en paramètre le résultat d'une requête SQL
     foreach ($results as $result) {
         $setting_name = $result[0];
@@ -129,7 +127,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
             ],
             [
                 "bodyPosition",
-                "Position sur le corps de la page",
+                "Position sur le corps de la page (body)",
                 "bottom",
                 "bottom",
                 "select",
@@ -256,7 +254,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
             ],
             [
                 "highPrivacy",
-                "Activer le consentement automatique",
+                "Accepter automatiquement tout les cookies",
                 "false",
                 "false",
                 "radio",
@@ -345,28 +343,208 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "général"
             ],
             [
+                "googleTagManagerEnabled",
+                "Utiliser Google Tag Manager",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
                 "googleTagManager",
                 "Google Tag Manager",
-                "GTM-XXXXXX",
-                "GTM-XXXXXX",
+                "GTM-XXXX",
+                "GTM-XXXX",
                 "text",
+                "",
+                "service"
+            ],
+            [
+                "googleAnalyticsEnabled",
+                "Utiliser Google Analytics",
+                "false",
+                "false",
+                "radio",
                 "",
                 "service"
             ],
             [
                 "googleAnalytics",
                 "Google Analytics",
-                "G-XXXXXXXXX",
-                "G-XXXXXXXXX",
+                "UA-XXXXXXXX-X",
+                "UA-XXXXXXXX-X",
                 "text",
                 "",
                 "service"
             ],
             [
-                "googleAnalytics",
-                "Google Analytics",
-                "G-XXXXXXXXX",
-                "G-XXXXXXXXX",
+                "matomoEnabled",
+                "Utiliser Matomo",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "matomoId",
+                "Matomo ID",
+                "SITE_ID",
+                "SITE_ID",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "matomoUrl",
+                "Matomo URL",
+                "matomomtUrl",
+                "matomomtUrl",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "zopimEnabled",
+                "Utiliser Zopim",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "zopim",
+                "Zopim ID",
+                "zopim_id",
+                "zopim_id",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "youtubeEnabled",
+                "Utiliser YouTube",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "youtubeApiEnabled",
+                "Utiliser YouTube API",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "vimeoEnabled",
+                "Utiliser Vimeo",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "facebookLikeboxEnabled",
+                "Utiliser Facebook Likebox",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "facebookChatEnabled",
+                "Utiliser Facebook Chat",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "facebookChatId",
+                "Facebook app ID",
+                "ID",
+                "ID",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "googleMapsEnabled",
+                "Utiliser Google Maps",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "googleMapsID",
+                "Google Maps ID",
+                "API KEY",
+                "API KEY",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "googleMapsIFrameEnabled",
+                "Utiliser Google Maps IFrame",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "googleMapsSnazzyEnabled",
+                "Utiliser Google Maps via Snazzy Maps",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "googleMapsSnazzyID",
+                "Snazzy Maps ID",
+                "ID",
+                "ID",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "googleMapsMapBoxEnabled",
+                "Utiliser Google Maps via MapBox",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service"
+            ],
+            [
+                "googleMapsMapBoxToken",
+                "Token d'accès MapBox",
+                "token",
+                "token",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "googleMapsMapBoxJs",
+                "JS personnalisé MapBox",
+                "js",
+                "js",
                 "text",
                 "",
                 "service"
@@ -429,7 +607,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
 <div class="wrap">
     <h1>Paramètres Tarteaucitron</h1>
     <form method="post" action="<?php echo "admin.php?page=skazyrgpd-admin"?>">
-        <input type='submit' class='button button-primary' value='Enregistrer les modifications'><br><br>
+        <input type='submit' class='button button-primary' value='Enregistrer les modifications'><br>
         <h2>Général</h2>
         <div class="skazyrgpd-category">
             <?php
@@ -438,6 +616,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 skazyrgpd_display_settings($results);
             ?>
         </div>
+        <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
         <h2>Apparence</h2>
         <div class="skazyrgpd-category">
             <?php 
@@ -446,6 +625,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 skazyrgpd_display_settings($results);
             ?>
         </div>
+        <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
         <h2>Services</h2>
         <div class="skazyrgpd-category">
             <?php 
@@ -457,10 +637,11 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
         <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
     </form>
     <h2 style="color: #f00;">Zone (pas très) dangereuse</h2>
-    <p>Remet les paramètres à leur valeur par défaut sans changer de configuration.</p>
+    <h4>Ces actions ci-dessous demanderont une confirmation avant d'être exécutées.</h4>
+    <p>Applique les paramètres par défaut de la configuration actuelle.</p>
     <input name='reset' class='button' value='Réinitialiser les paramètres' style="border-color: #f00; color: #f00;"><br><br>
-    <p>Remet les paramètres à leur valeur par défaut sur une nouvelle configuration.</p>
-    <input name='db-install' class='button button-primary' value='Installer / réinitialiser la BDD' style="background-color: #f00; border-color: #f00;">
+    <p>Supprime et crée à nouveau la table qu'utilise le plugin sur la base de données. Permet de charger une nouvelle configuration.</p>
+    <input name='db-install' class='button button-primary' value='Installer / Réinitialiser la BDD' style="background-color: #f00; border-color: #f00;">
     <br>
     <?php
     //echo $query; //affiche la requête SQL pour créer la base de données
