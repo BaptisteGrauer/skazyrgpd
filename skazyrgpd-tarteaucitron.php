@@ -1,4 +1,7 @@
 <?php
+
+// Paramètres module
+
 global $wpdb;
 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
 $result = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
@@ -29,33 +32,36 @@ $tarteaucitron_readmoreLink = $result[22][1];
 $tarteaucitron_mandatory = $result[23][1];
 $tarteaucitron_mandatoryCta = $result[24][1];
 
+// Paramètres couleurs bandeau
+
+$colors = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_category='apparence'", ARRAY_N);
+$tarteaucitron_backgroundColor = $colors[0][1];
+$tarteaucitron_textColor = $colors[1][1];
+
 // Initialisation du module
 
-echo "<script src='
-https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.13.0/tarteaucitron.min.js
-'></script>
-<link href='
-https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.13.0/css/tarteaucitron.min.css
-' rel='stylesheet''>
+echo "
+<script src='https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.13.0/tarteaucitron.min.js'></script>
+<link href='https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.13.0/css/tarteaucitron.min.css' rel='stylesheet'>
 <script>
 tarteaucitron.init({
-     'privacyUrl': '$tarteaucitron_privacyUrl ', /* Privacy policy url */
-     'bodyPosition': '$tarteaucitron_bodyPosition ', /* or top to bring it as first element for accessibility */
+     'privacyUrl': '$tarteaucitron_privacyUrl', /* Privacy policy url */
+     'bodyPosition': '$tarteaucitron_bodyPosition', /* or top to bring it as first element for accessibility */
 
-     'hashtag': '$tarteaucitron_hashtag ', /* Open the panel with this hashtag */
-     'cookieName': '$tarteaucitron_cookieName ', /* Cookie name */
+     'hashtag': '$tarteaucitron_hashtag', /* Open the panel with this hashtag */
+     'cookieName': '$tarteaucitron_cookieName', /* Cookie name */
 
-     'orientation': '$tarteaucitron_orientation ', /* Banner position (top - bottom - middle - popup) */
+     'orientation': '$tarteaucitron_orientation', /* Banner position (top - bottom - middle - popup) */
 
      'groupServices': $tarteaucitron_groupServices , /* Group services by category */
-     'serviceDefaultState': '$tarteaucitron_serviceDefaultState ', /* Default state (true - wait - false) */
+     'serviceDefaultState': '$tarteaucitron_serviceDefaultState', /* Default state (true - wait - false) */
 
      'showAlertSmall': $tarteaucitron_showAlertSmall , /* Show the small banner on bottom right */
      'cookieslist': $tarteaucitron_cookieslist , /* Show the cookie list */
     
      'showIcon': $tarteaucitron_showIcon , /* Show cookie icon to manage cookies */
      //'iconSrc': '$tarteaucitron_iconSrc ', /* Optionnal: URL or base64 encoded image */
-     'iconPosition': '$tarteaucitron_iconPosition ', /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
+     'iconPosition': '$tarteaucitron_iconPosition', /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
 
      'adblocker': $tarteaucitron_adblocker , /* Show a Warning if an adblocker is detected */
 
@@ -66,18 +72,20 @@ tarteaucitron.init({
      'handleBrowserDNTRequest': $tarteaucitron_handleBrowserDNTRequest , /* If Do Not Track == 1, disallow all */
 
      'removeCredit': $tarteaucitron_removeCredit , /* Remove credit link */
-     'moreInfoLink': '$tarteaucitron_moreInfoLink ', /* Show more info link */
+     'moreInfoLink': '$tarteaucitron_moreInfoLink', /* Show more info link */
      'useExternalCss': $tarteaucitron_useExternalCss , /* If false, the tarteaucitron.css file will be loaded */
      'useExternalJs': $tarteaucitron_useExternalJs , /* If false, the tarteaucitron.services.js file will be loaded */
 
-     'cookieDomain': '$tarteaucitron_cookieDomain ', /* Shared cookie for subdomain website */
+     'cookieDomain': '$tarteaucitron_cookieDomain', /* Shared cookie for subdomain website */
 
-     'readmoreLink': '$tarteaucitron_readmoreLink ', /* Change the default readmore link pointing to tarteaucitron.io */
+     'readmoreLink': '$tarteaucitron_readmoreLink', /* Change the default readmore link pointing to tarteaucitron.io */
     
      'mandatory': $tarteaucitron_mandatory , /* Show a message about mandatory cookies */
      'mandatoryCta': $tarteaucitron_mandatoryCta /* Show the disabled accept button when mandatory on */
 });
 </script>";
+
+// Paramètres services
 
 $enabledServices = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_type='radio' AND setting_category='service'", ARRAY_N);
 
@@ -94,8 +102,9 @@ $skazyrgpd_googlemapsEnabled = $enabledServices[9][1];
 $skazyrgpd_googlemapsiframeEnabled = $enabledServices[10][1];
 $skazyrgpd_googlemapssnazzyEnabled = $enabledServices[11][1];
 $skazyrgpd_googlemapsmapboxEnabled = $enabledServices[12][1];
+$skazyrgpd_customservicesEnabled = $enabledServices[13][1];
 
-$services = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_type='text' AND setting_category='service'",ARRAY_N);
+$services = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_type='text' OR setting_type='textarea' AND setting_category='service'", ARRAY_N);
 
 $skazyrgpd_gtm = $services[0][1];
 $skazyrgpd_gajs = $services[1][1];
@@ -107,15 +116,16 @@ $skazyrgpd_googlemapsID = $services[6][1];
 $skazyrgpd_googlemapsSnazzyID = $services[7][1];
 $skazyrgpd_googlemapsmapboxToken = $services[8][1];
 $skazyrgpd_googlemapsmapboxJs = $services[9][1];
+$skazyrgpd_customServices = $services[10][1];
 
-if($skazyrgpd_gtmEnabled == "true"){
+if ($skazyrgpd_gtmEnabled == "true") {
     echo "<script type='text/javascript'>
     tarteaucitron.user.googletagmanagerId = '$skazyrgpd_gtm';
     (tarteaucitron.job = tarteaucitron.job || []).push('googletagmanager');
     </script>";
 }
 
-if($skazyrgpd_gajsEnabled == "true"){
+if ($skazyrgpd_gajsEnabled == "true") {
     echo "<script type='text/javascript'>
     tarteaucitron.user.gajsUa = '$skazyrgpd_gajs';
     tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
@@ -123,7 +133,7 @@ if($skazyrgpd_gajsEnabled == "true"){
     </script>";
 }
 
-if($skazyrgpd_matomoEnabled == "true"){
+if ($skazyrgpd_matomoEnabled == "true") {
     echo "<script type='text/javascript'>
     tarteaucitron.user.matomoId = $skazyrgpd_matomoID;
     (tarteaucitron.job = tarteaucitron.job || []).push('matomo');
@@ -132,52 +142,52 @@ if($skazyrgpd_matomoEnabled == "true"){
     </script>";
 }
 
-if($skazyrgpd_zopimEnabled == "true"){
+if ($skazyrgpd_zopimEnabled == "true") {
     echo "<script type='text/javascript'>
     tarteaucitron.user.zopimID = '$skazyrgpd_zopimID';
     (tarteaucitron.job = tarteaucitron.job || []).push('zopim');
     </script>";
 }
 
-if($skazyrgpd_youtubeEnabled == "true"){
+if ($skazyrgpd_youtubeEnabled == "true") {
     echo "<script type='text/javascript'>
     (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
     </script>";
 }
 
-if($skazyrgpd_youtubeapiEnabled == "true"){
+if ($skazyrgpd_youtubeapiEnabled == "true") {
     echo "<script type='text/javascript'>
     (tarteaucitron.job = tarteaucitron.job || []).push('youtubeapi');
     </script>";
 }
 
-if($skazyrgpd_vimeoEnabled == "true"){
+if ($skazyrgpd_vimeoEnabled == "true") {
     echo "<script type='text/javascript'>
     (tarteaucitron.job = tarteaucitron.job || []).push('vimeo');
     </script>";
 }
 
-if($skazyrgpd_facebooklikeboxEnabled == "true"){
+if ($skazyrgpd_facebooklikeboxEnabled == "true") {
     echo "<script type='text/javascript'>
     (tarteaucitron.job = tarteaucitron.job || []).push('facebooklikebox');
     </script>";
 }
 
-if($skazyrgpd_facebookchatEnabled == "true"){
+if ($skazyrgpd_facebookchatEnabled == "true") {
     echo "<script type='text/javascript'>
     tarteaucitron.user.facebookChatID = '$skazyrgpd_facebookchatID';
     (tarteaucitron.job = tarteaucitron.job || []).push('facebookcustomerchat');
     </script>";
 }
 
-if($skazyrgpd_googlemapsEnabled == "true"){
+if ($skazyrgpd_googlemapsEnabled == "true") {
     echo "<script type='text/javascript'>
     tarteaucitron.user.googlemapsKey = '$skazyrgpd_googlemapsID';
     (tarteaucitron.job = tarteaucitron.job || []).push('googlemaps');
     </script>";
 }
 
-if($skazyrgpd_googlemapsiframeEnabled == "true"){
+if ($skazyrgpd_googlemapsiframeEnabled == "true") {
     echo "<script>
     tarteaucitron.services.googlemapsembed = {
         'key': 'googlemapsembed',
@@ -210,11 +220,14 @@ if($skazyrgpd_googlemapsiframeEnabled == "true"){
     </script>";
 }
 
-if($skazyrgpd_googlemapssnazzyEnabled == "true"){
+if ($skazyrgpd_googlemapssnazzyEnabled == "true") {
     echo "";
 }
 
-if($skazyrgpd_googlemapsmapboxEnabled== "true"){
+if ($skazyrgpd_googlemapsmapboxEnabled == "true") {
     echo "";
+}
+if ($skazyrgpd_customservicesEnabled == "true") {
+    echo "<script>$skazyrgpd_customServices</script>";
 }
 ?>

@@ -1,22 +1,23 @@
-<?php 
+<?php
 
 if (isset($_GET['reset'])) {
     skazyrgpd_reset_settings();
 }
-if (isset($_GET['db-install'])){
+if (isset($_GET['db-install'])) {
     skazyrgpd_install_db();
 }
 global $wpdb;
 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-if($_SERVER['REQUEST_METHOD'] == "POST"){ // MAJ des modifications sur la bdd
+if ($_SERVER['REQUEST_METHOD'] == "POST") { // MAJ des modifications sur la bdd
     $query = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db", ARRAY_N);
-    foreach($query as $setting){
+    foreach ($query as $setting) {
         $name = $setting[0];
         $value = $_POST[$setting[0]];
         $wpdb->get_results("UPDATE $skazyrgpd_db SET setting_value='$value' WHERE setting_name='$name'");
     }
 }
-function skazyrgpd_display_settings($results){ // Prends en paramètre le résultat d'une requête SQL
+function skazyrgpd_display_settings($results)
+{ // Prends en paramètre le résultat d'une requête SQL
     foreach ($results as $result) {
         $setting_name = $result[0];
         $setting_description = $result[1];
@@ -26,8 +27,7 @@ function skazyrgpd_display_settings($results){ // Prends en paramètre le résul
         if ($setting_type == "text") {
             echo "<label for='$setting_name'>$setting_description</label><br>";
             echo "<input type='text' name='$setting_name' value='$setting_value'><br>";
-            }
-        elseif ($setting_type == "color") {
+        } elseif ($setting_type == "color") {
             echo "<label for='$setting_name'>$setting_description</label><br>";
             echo "<input type='color' name='$setting_name' value='$setting_value'><br>";
         } else if ($setting_type == "select") {
@@ -62,7 +62,8 @@ function skazyrgpd_display_settings($results){ // Prends en paramètre le résul
         echo "<br>";
     }
 }
-function skazyrgpd_reset_settings(){ // Change tout les champs avec leur valeur par défaut
+function skazyrgpd_reset_settings()
+{ // Change tout les champs avec leur valeur par défaut
     global $wpdb;
     $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
     $results = $wpdb->get_results("SELECT setting_name, setting_default_value FROM $skazyrgpd_db", ARRAY_N);
@@ -84,8 +85,9 @@ function skazyrgpd_reset_settings(){ // Change tout les champs avec leur valeur 
     
     //location.reload(true);</script>";
 }
-function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazyrgpd
-    $Settings = 
+function skazyrgpd_install_db()
+{ // Supprime et recrée la table {préfixe}skazyrgpd
+    $Settings =
         [
             /*
             [
@@ -122,9 +124,9 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
             [
                 "privacyUrl",
                 "URL Politique de confidentialité",
-                "" ,
-                "", 
-                "text", 
+                "",
+                "",
+                "text",
                 "",
                 "général",
                 "général"
@@ -135,7 +137,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "bottom",
                 "bottom",
                 "select",
-                ["top","bottom"],
+                ["top", "bottom"],
                 "général",
                 "avancé"
             ],
@@ -144,14 +146,14 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "Hashtag (pour ouvrir le panneau)",
                 "#tarteaucitron",
                 "#tarteaucitron",
-                "text", 
+                "text",
                 "",
                 "général",
                 "avancé"
             ],
             [
                 "cookieName",
-                "Nom du cookie pour stocker les paramètres de tarteaucitron" ,
+                "Nom du cookie pour stocker les paramètres de tarteaucitron",
                 "tarteaucitron",
                 "tarteaucitron",
                 "text",
@@ -236,7 +238,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "BottomLeft",
                 "BottomLeft",
                 "select",
-                ["TopLeft","TopRight","BottomLeft","BottomRight"],
+                ["TopLeft", "TopRight", "BottomLeft", "BottomRight"],
                 "général",
                 "avancé"
             ],
@@ -252,7 +254,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
             ],
             [
                 "denyAllCta",
-                "Afficher le bouton 'Tout refuser'" ,
+                "Afficher le bouton 'Tout refuser'",
                 "true",
                 "true",
                 "radio",
@@ -600,14 +602,34 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "service",
                 "service"
             ],
+            [
+                "addCustomJsEnabled",
+                "Utiliser du JS personnalisé pour ajouter des services",
+                "false",
+                "false",
+                "radio",
+                "",
+                "service",
+                "service"
+            ],
+            [
+                "addCustomJs",
+                "JS personnalisé pour ajouter des services (sans balise script)",
+                "",
+                "",
+                "textarea",
+                "",
+                "service",
+                "service"
+            ]
         ];
     global $wpdb;
-    $skazyrgpd_db = $wpdb->prefix."skazyrgpd"; 
+    $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
     // Supprime la table dans la BDD
     $wpdb->query("DROP TABLE IF EXISTS $skazyrgpd_db");
     // Crée la table dans la BDD de wordpress
     $charset_collate = $wpdb->get_charset_collate();
-    $sql = $wpdb-> get_results("CREATE TABLE IF NOT EXISTS $skazyrgpd_db (
+    $sql = $wpdb->get_results("CREATE TABLE IF NOT EXISTS $skazyrgpd_db (
         id INT(100) NOT NULL AUTO_INCREMENT,
         setting_name TEXT NOT NULL,
         setting_description TEXT NOT NULL,
@@ -624,7 +646,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
     $query = "INSERT INTO $skazyrgpd_db 
     (setting_name, setting_description, setting_value, setting_default_value, setting_type, setting_select_possible_values, setting_category, setting_admin_display) 
     VALUES ";
-    foreach($Settings as $setting){
+    foreach ($Settings as $setting) {
         $settingName = $setting[0];
         $settingDesc = $setting[1];
         $settingVal = $setting[2];
@@ -635,13 +657,12 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
         $settingAdminDisplay = $setting[7];
         $value = "(\"$settingName\", \"$settingDesc\", \"$settingVal\", \"$settingDef\", \"$settingType\", ";
         if (gettype($settingSelect) == "array") {
-            $settingPossibleVals =  "[";
-            for($i = 0; $i < count($settingSelect); $i++) {
-                if(isset($settingSelect[$i +1])){
+            $settingPossibleVals = "[";
+            for ($i = 0; $i < count($settingSelect); $i++) {
+                if (isset($settingSelect[$i + 1])) {
                     $settingPossibleVals .= "'" . $settingSelect[$i] . "', ";
-                }
-                else {
-                    $settingPossibleVals .= "'" .$settingSelect[$i] . "'";
+                } else {
+                    $settingPossibleVals .= "'" . $settingSelect[$i] . "'";
                 }
             }
             $settingPossibleVals .= "]";
@@ -651,7 +672,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
         }
         $values[] = $value;
     }
-    $query .= implode(", ", $values). ";";
+    $query .= implode(", ", $values) . ";";
     $wpdb->query($query);
     echo "<script> window.history.replaceState({}, document.title, '/' + 'wp-admin/admin.php?page=skazyrgpd-admin');
     //location.reload(true);</script>";
@@ -659,16 +680,16 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
 ?>
 <div class="wrap">
     <h1>Paramètres Tarteaucitron</h1>
-    <form method="post" action="<?php echo "admin.php?page=skazyrgpd-admin"?>">
+    <form method="post" action="<?php echo "admin.php?page=skazyrgpd-admin" ?>">
         <ul uk-accordion="multiple: true">
             <li class="uk-open">
                 <a class="uk-accordion-title" href="#">Général</a>
                 <div class="uk-accordion-content">
                     <div class="skazyrgpd-category">
                         <?php
-                            $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-                            $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='général'", ARRAY_N);
-                            skazyrgpd_display_settings($results);
+                        $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                        $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='général'", ARRAY_N);
+                        skazyrgpd_display_settings($results);
                         ?>
                     </div>
                 </div>
@@ -677,10 +698,10 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 <a class="uk-accordion-title" href="#">Avancé</a>
                 <div class="uk-accordion-content">
                     <div class="skazyrgpd-category">
-                        <?php 
-                            $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-                            $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='avancé'", ARRAY_N);
-                            skazyrgpd_display_settings($results);
+                        <?php
+                        $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                        $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='avancé'", ARRAY_N);
+                        skazyrgpd_display_settings($results);
                         ?>
                     </div>
                 </div>
@@ -689,10 +710,10 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 <a class="uk-accordion-title" href="#">Services</a>
                 <div class="uk-accordion-content">
                     <div class="skazyrgpd-category">
-                        <?php 
-                            $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-                            $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='service'", ARRAY_N);
-                            skazyrgpd_display_settings($results);
+                        <?php
+                        $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                        $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='service'", ARRAY_N);
+                        skazyrgpd_display_settings($results);
                         ?>
                     </div>
                 </div>
@@ -700,31 +721,32 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
             <li>
                 <a class="uk-accordion-title" href="#">Paramètres plugin</a>
                 <div class="uk-accordion-content">
-                    <h2 style="color: #f00;">Zone (pas très) dangereuse</h2>
                     <h4>Ces actions ci-dessous demanderont une confirmation avant d'être exécutées.</h4>
                     <p>Applique les paramètres par défaut de la configuration actuelle.</p>
-                    <input name='reset' class='button' value='Réinitialiser les paramètres' style="border-color: #f00; color: #f00;"><br><br>
-                    <p>Supprime et crée à nouveau la table qu'utilise le plugin sur la base de données. Permet de charger une nouvelle configuration.</p>
-                    <input name='db-install' class='button button-primary' value='Installer / Réinitialiser la BDD' style="background-color: #f00; border-color: #f00;">
+                    <input name='reset' class='button' value='Réinitialiser les paramètres'
+                        style="border-color: #f00; color: #f00;"><br><br>
+                    <p>Supprime et crée à nouveau la table qu'utilise le plugin sur la base de données. Permet de
+                        charger une nouvelle configuration.</p>
+                    <input name='db-install' class='button button-primary' value='Installer / Réinitialiser la BDD'
+                        style="background-color: #f00; border-color: #f00;">
                 </div>
             </li>
         </ul>
-        <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
+        <input type="submit" class="button button-primary" value="Enregistrer les modifications">
     </form>
-    
     <br>
     <?php
     //echo $query; //affiche la requête SQL pour créer la base de données
     ?>
 </div>
 <script>
-    document.querySelector("input[name='reset']").addEventListener("click", function(){
-        if(confirm("Vous êtes sur le point de réinitialiser les paramètre à leur valeur d'origine.\n\nVoulez-vous continuer ?")){
+    document.querySelector("input[name='reset']").addEventListener("click", function () {
+        if (confirm("Vous êtes sur le point de réinitialiser les paramètre à leur valeur d'origine.\n\nVoulez-vous continuer ?")) {
             window.location.href = "<?= get_site_url() ?>/wp-admin/admin.php?page=skazyrgpd-admin&reset=true";
         }
     });
-    document.querySelector("input[name='db-install']").addEventListener("click", function(){
-        if(confirm("Vous êtes sur le point d'installer / de réinitialiser les informations dans la base de donnée du plugin.\n\nVoulez-vous continuer ?")){
+    document.querySelector("input[name='db-install']").addEventListener("click", function () {
+        if (confirm("Vous êtes sur le point d'installer / de réinitialiser les informations dans la base de donnée du plugin.\n\nVoulez-vous continuer ?")) {
             window.location.href = "<?= get_site_url() ?>/wp-admin/admin.php?page=skazyrgpd-admin&db-install=true";
         }
     });
