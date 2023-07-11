@@ -31,9 +31,12 @@ $tarteaucitron_mandatoryCta = $result[24][1];
 
 // Initialisation du module
 
-$dir = plugin_dir_url(__FILE__) . "tarteaucitron.js";
-echo "
-<script src='$dir'></script>
+echo "<script src='
+https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.13.0/tarteaucitron.min.js
+'></script>
+<link href='
+https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.13.0/css/tarteaucitron.min.css
+' rel='stylesheet''>
 <script>
 tarteaucitron.init({
      'privacyUrl': '$tarteaucitron_privacyUrl ', /* Privacy policy url */
@@ -51,7 +54,7 @@ tarteaucitron.init({
      'cookieslist': $tarteaucitron_cookieslist , /* Show the cookie list */
     
      'showIcon': $tarteaucitron_showIcon , /* Show cookie icon to manage cookies */
-     // 'iconSrc': '$tarteaucitron_iconSrc ', /* Optionnal: URL or base64 encoded image */
+     //'iconSrc': '$tarteaucitron_iconSrc ', /* Optionnal: URL or base64 encoded image */
      'iconPosition': '$tarteaucitron_iconPosition ', /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
 
      'adblocker': $tarteaucitron_adblocker , /* Show a Warning if an adblocker is detected */
@@ -67,7 +70,7 @@ tarteaucitron.init({
      'useExternalCss': $tarteaucitron_useExternalCss , /* If false, the tarteaucitron.css file will be loaded */
      'useExternalJs': $tarteaucitron_useExternalJs , /* If false, the tarteaucitron.services.js file will be loaded */
 
-     //'cookieDomain': '$tarteaucitron_cookieDomain ', /* Shared cookie for subdomain website */
+     'cookieDomain': '$tarteaucitron_cookieDomain ', /* Shared cookie for subdomain website */
 
      'readmoreLink': '$tarteaucitron_readmoreLink ', /* Change the default readmore link pointing to tarteaucitron.io */
     

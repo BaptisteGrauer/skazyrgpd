@@ -96,6 +96,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "Type de paramètre"
                 "Valeurs possibles si type 'select'"
                 "Catégorie du paramètre"
+                "Catégorie d'affichage dans l'admin"
             ]
             */
             [
@@ -105,7 +106,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "#aaaaaa",
                 "color",
                 "",
-                "apparence"
+                "apparence",
+                "général"
             ],
             [
                 "textColor",
@@ -114,7 +116,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "#000000",
                 "color",
                 "",
-                "apparence"
+                "apparence",
+                "général"
             ],
             [
                 "privacyUrl",
@@ -123,6 +126,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "", 
                 "text", 
                 "",
+                "général",
                 "général"
             ],
             [
@@ -132,7 +136,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "bottom",
                 "select",
                 ["top","bottom"],
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "hashtag",
@@ -141,7 +146,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "#tarteaucitron",
                 "text", 
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "cookieName",
@@ -150,7 +156,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "tarteaucitron",
                 "text",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "orientation",
@@ -159,6 +166,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "middle",
                 "select",
                 ["top", "bottom", "middle", "popup"],
+                "général",
                 "général"
             ],
             [
@@ -168,7 +176,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "serviceDefaultState",
@@ -177,7 +186,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "wait",
                 "select",
                 ["true", "wait", "false"],
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "showAlertSmall",
@@ -186,7 +196,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "cookiesList",
@@ -195,7 +206,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "true",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "showIcon",
@@ -204,7 +216,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "true",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
 
@@ -214,7 +227,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "",
                 "text",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "iconPosition",
@@ -223,7 +237,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "BottomLeft",
                 "select",
                 ["TopLeft","TopRight","BottomLeft","BottomRight"],
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "adblocker",
@@ -232,7 +247,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "denyAllCta",
@@ -241,7 +257,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "true",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "acceptAllCta",
@@ -250,7 +267,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "true",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "highPrivacy",
@@ -259,7 +277,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "handleBrowserDNTRequest",
@@ -268,7 +287,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "removeCredit",
@@ -277,7 +297,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "moreInfoLink",
@@ -286,7 +307,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "true",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "useExternalCss",
@@ -295,7 +317,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "useExternalJs",
@@ -304,7 +327,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "cookieDomain",
@@ -313,7 +337,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "",
                 "text",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "readmoreLink",
@@ -322,7 +347,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "",
                 "text",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "mandatory",
@@ -331,7 +357,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "true",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "mandatoryCta",
@@ -340,7 +367,8 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "true",
                 "radio",
                 "",
-                "général"
+                "général",
+                "avancé"
             ],
             [
                 "googleTagManagerEnabled",
@@ -349,6 +377,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -358,6 +387,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "GTM-XXXX",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -367,6 +397,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -376,6 +407,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "UA-XXXXXXXX-X",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -385,6 +417,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -394,15 +427,17 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "SITE_ID",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
                 "matomoUrl",
                 "Matomo URL",
-                "matomomtUrl",
-                "matomomtUrl",
+                "matomotUrl",
+                "matomotUrl",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -412,6 +447,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -421,6 +457,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "zopim_id",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -430,6 +467,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -439,6 +477,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -448,6 +487,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -457,6 +497,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -466,6 +507,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -475,6 +517,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "ID",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -484,6 +527,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -493,6 +537,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "API KEY",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -502,6 +547,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -511,6 +557,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -520,6 +567,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "ID",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -529,6 +577,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "false",
                 "radio",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -538,6 +587,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "token",
                 "text",
                 "",
+                "service",
                 "service"
             ],
             [
@@ -547,6 +597,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 "js",
                 "text",
                 "",
+                "service",
                 "service"
             ],
         ];
@@ -565,12 +616,13 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
         setting_type TEXT NOT NULL,
         setting_select_possible_values TEXT,
         setting_category TEXT NOT NULL,
+        setting_admin_display TEXT NOT NULL,
         PRIMARY KEY  (id)
         ) $charset_collate ;");
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     // Insère les valeurs par défaut dans la BDD
     $query = "INSERT INTO $skazyrgpd_db 
-    (setting_name, setting_description, setting_value, setting_default_value, setting_type, setting_select_possible_values, setting_category) 
+    (setting_name, setting_description, setting_value, setting_default_value, setting_type, setting_select_possible_values, setting_category, setting_admin_display) 
     VALUES ";
     foreach($Settings as $setting){
         $settingName = $setting[0];
@@ -580,6 +632,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
         $settingType = $setting[4];
         $settingSelect = $setting[5];
         $settingCategory = $setting[6];
+        $settingAdminDisplay = $setting[7];
         $value = "(\"$settingName\", \"$settingDesc\", \"$settingVal\", \"$settingDef\", \"$settingType\", ";
         if (gettype($settingSelect) == "array") {
             $settingPossibleVals =  "[";
@@ -592,9 +645,9 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
                 }
             }
             $settingPossibleVals .= "]";
-            $value .= "\"$settingPossibleVals\", \"$settingCategory\")";
+            $value .= "\"$settingPossibleVals\", \"$settingCategory\",\"$settingAdminDisplay\")";
         } else {
-            $value .= "\"\", \"$settingCategory\")";
+            $value .= "\"\", \"$settingCategory\",\"$settingAdminDisplay\")";
         }
         $values[] = $value;
     }
@@ -607,41 +660,58 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
 <div class="wrap">
     <h1>Paramètres Tarteaucitron</h1>
     <form method="post" action="<?php echo "admin.php?page=skazyrgpd-admin"?>">
-        <input type='submit' class='button button-primary' value='Enregistrer les modifications'><br>
-        <h2>Général</h2>
-        <div class="skazyrgpd-category">
-            <?php
-                $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-                $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
-                skazyrgpd_display_settings($results);
-            ?>
-        </div>
-        <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
-        <h2>Apparence</h2>
-        <div class="skazyrgpd-category">
-            <?php 
-                $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-                $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='apparence'", ARRAY_N);
-                skazyrgpd_display_settings($results);
-            ?>
-        </div>
-        <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
-        <h2>Services</h2>
-        <div class="skazyrgpd-category">
-            <?php 
-                $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-                $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='service'", ARRAY_N);
-                skazyrgpd_display_settings($results);
-            ?>
-        </div>
+        <ul uk-accordion="multiple: true">
+            <li class="uk-open">
+                <a class="uk-accordion-title" href="#">Général</a>
+                <div class="uk-accordion-content">
+                    <div class="skazyrgpd-category">
+                        <?php
+                            $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                            $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='général'", ARRAY_N);
+                            skazyrgpd_display_settings($results);
+                        ?>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">Avancé</a>
+                <div class="uk-accordion-content">
+                    <div class="skazyrgpd-category">
+                        <?php 
+                            $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                            $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='avancé'", ARRAY_N);
+                            skazyrgpd_display_settings($results);
+                        ?>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">Services</a>
+                <div class="uk-accordion-content">
+                    <div class="skazyrgpd-category">
+                        <?php 
+                            $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                            $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='service'", ARRAY_N);
+                            skazyrgpd_display_settings($results);
+                        ?>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">Paramètres plugin</a>
+                <div class="uk-accordion-content">
+                    <h2 style="color: #f00;">Zone (pas très) dangereuse</h2>
+                    <h4>Ces actions ci-dessous demanderont une confirmation avant d'être exécutées.</h4>
+                    <p>Applique les paramètres par défaut de la configuration actuelle.</p>
+                    <input name='reset' class='button' value='Réinitialiser les paramètres' style="border-color: #f00; color: #f00;"><br><br>
+                    <p>Supprime et crée à nouveau la table qu'utilise le plugin sur la base de données. Permet de charger une nouvelle configuration.</p>
+                    <input name='db-install' class='button button-primary' value='Installer / Réinitialiser la BDD' style="background-color: #f00; border-color: #f00;">
+                </div>
+            </li>
+        </ul>
         <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
     </form>
-    <h2 style="color: #f00;">Zone (pas très) dangereuse</h2>
-    <h4>Ces actions ci-dessous demanderont une confirmation avant d'être exécutées.</h4>
-    <p>Applique les paramètres par défaut de la configuration actuelle.</p>
-    <input name='reset' class='button' value='Réinitialiser les paramètres' style="border-color: #f00; color: #f00;"><br><br>
-    <p>Supprime et crée à nouveau la table qu'utilise le plugin sur la base de données. Permet de charger une nouvelle configuration.</p>
-    <input name='db-install' class='button button-primary' value='Installer / Réinitialiser la BDD' style="background-color: #f00; border-color: #f00;">
+    
     <br>
     <?php
     //echo $query; //affiche la requête SQL pour créer la base de données
