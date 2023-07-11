@@ -432,8 +432,7 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
         <input type='submit' class='button button-primary' value='Enregistrer les modifications'><br><br>
         <h2>Général</h2>
         <div class="skazyrgpd-category">
-            <?php 
-                include 'skazyrgpd-settings.php';
+            <?php
                 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
                 $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
                 skazyrgpd_display_settings($results);
@@ -442,7 +441,6 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
         <h2>Apparence</h2>
         <div class="skazyrgpd-category">
             <?php 
-                include 'skazyrgpd-settings.php';
                 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
                 $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='apparence'", ARRAY_N);
                 skazyrgpd_display_settings($results);
@@ -451,7 +449,6 @@ function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazy
         <h2>Services</h2>
         <div class="skazyrgpd-category">
             <?php 
-                include 'skazyrgpd-settings.php';
                 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
                 $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='service'", ARRAY_N);
                 skazyrgpd_display_settings($results);

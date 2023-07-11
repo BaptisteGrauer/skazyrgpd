@@ -3,31 +3,31 @@ global $wpdb;
 $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
 $result = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
 
-$tarteaucitron_privacyUrl = $result[0][1]; // string -> URL personnalisée
-$tarteaucitron_bodyPosition = $result[1][1]; // string -> top, bottom
-$tarteaucitron_hashtag = $result[2][1]; // string -> # personnalisé
-$tarteaucitron_cookieName = $result[3][1]; // string -> nom du cookie
-$tarteaucitron_orientation = $result[4][1];// string -> top, bottom, middle, popup
-$tarteaucitron_groupServices = $result[5][1]; // bool
-$tarteaucitron_serviceDefaultState = $result[6][1]; // bool, string -> true, wait, false
-$tarteaucitron_showAlertSmall = $result[7][1]; // bool
-$tarteaucitron_cookieslist = $result[8][1]; // bool
-$tarteaucitron_showIcon = $result[9][1]; // bool
-$tarteaucitron_iconSrc = $result[10][1]; // bool
-$tarteaucitron_iconPosition = $result[11][1]; // string -> TopLeft, TopRight, BottomLeft, BottomRight
-$tarteaucitron_adblocker = $result[12][1]; // bool
-$tarteaucitron_denyAllCta = $result[13][1]; // bool
-$tarteaucitron_acceptAllCta = $result[14][1]; // bool
-$tarteaucitron_highPrivacy = $result[15][1]; // bool
-$tarteaucitron_handleBrowserDNTRequest = $result[16][1]; // bool
-$tarteaucitron_removeCredit = $result[17][1]; // bool
-$tarteaucitron_moreInfoLink = $result[18][1]; // bool
-$tarteaucitron_useExternalCss = $result[19][1]; // bool
-$tarteaucitron_useExternalJs = $result[20][1]; // bool
-$tarteaucitron_cookieDomain = $result[21][1]; // string -> nom de domaine personnalisé
-$tarteaucitron_readmoreLink = $result[22][1]; // string -> page en savoir plus personnalisé
-$tarteaucitron_mandatory = $result[23][1]; // bool
-$tarteaucitron_mandatoryCta = $result[24][1]; // bool
+$tarteaucitron_privacyUrl = $result[0][1];
+$tarteaucitron_bodyPosition = $result[1][1];
+$tarteaucitron_hashtag = $result[2][1];
+$tarteaucitron_cookieName = $result[3][1];
+$tarteaucitron_orientation = $result[4][1];
+$tarteaucitron_groupServices = $result[5][1];
+$tarteaucitron_serviceDefaultState = $result[6][1];
+$tarteaucitron_showAlertSmall = $result[7][1];
+$tarteaucitron_cookieslist = $result[8][1];
+$tarteaucitron_showIcon = $result[9][1];
+$tarteaucitron_iconSrc = $result[10][1];
+$tarteaucitron_iconPosition = $result[11][1];
+$tarteaucitron_adblocker = $result[12][1];
+$tarteaucitron_denyAllCta = $result[13][1];
+$tarteaucitron_acceptAllCta = $result[14][1];
+$tarteaucitron_highPrivacy = $result[15][1];
+$tarteaucitron_handleBrowserDNTRequest = $result[16][1];
+$tarteaucitron_removeCredit = $result[17][1];
+$tarteaucitron_moreInfoLink = $result[18][1];
+$tarteaucitron_useExternalCss = $result[19][1];
+$tarteaucitron_useExternalJs = $result[20][1];
+$tarteaucitron_cookieDomain = $result[21][1];
+$tarteaucitron_readmoreLink = $result[22][1];
+$tarteaucitron_mandatory = $result[23][1];
+$tarteaucitron_mandatoryCta = $result[24][1];
 
 echo "
 <script src='wp-content/plugins/skazyrgpd/tarteaucitron.js'></script>
