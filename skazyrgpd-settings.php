@@ -1,32 +1,64 @@
 <?php 
 
+
+global $wpdb;
+$skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+
 // Paramètres actuels
 
-$tarteaucitron_privacyUrl = "https://skazy.nc/protection-des-donnees"; // string -> URL personnalisée
-$tarteaucitron_bodyPosition = "bottom"; // string -> top, bottom
-$tarteaucitron_hashtag = "#tarteaucitron"; // string -> # personnalisé
-$tarteaucitron_cookieName = "mag-skazy"; // string -> nom du cookie
-$tarteaucitron_orientation = "middle"; // string -> top, bottom, middle, popup
-$tarteaucitron_groupServices = "false"; // bool
-$tarteaucitron_serviceDefaultState = "wait"; // bool, string -> true, wait, false
-$tarteaucitron_showAlertSmall = "false"; // bool
-$tarteaucitron_cookieslist = "false"; // bool
-$tarteaucitron_showIcon = "true"; // bool
-$tarteaucitron_iconSrc = ""; // bool
-$tarteaucitron_iconPosition = "BottomLeft"; // string -> TopLeft, TopRight, BottomLeft, BottomRight
-$tarteaucitron_adblocker = "false"; // bool
-$tarteaucitron_denyAllCta = "true"; // bool
-$tarteaucitron_acceptAllCta = "true"; // bool
-$tarteaucitron_highPrivacy = "true"; // bool
-$tarteaucitron_handleBrowserDNTRequest = "false"; // bool
-$tarteaucitron_removeCredit = "false"; // bool
-$tarteaucitron_moreInfoLink = "true"; // bool
-$tarteaucitron_useExternalCss = "false"; // bool
-$tarteaucitron_useExternalJs = "false"; // bool
-$tarteaucitron_cookieDomain = ""; // string -> nom de domaine personnalisé
-$tarteaucitron_readmoreLink = ""; // string -> page en savoir plus personnalisé
-$tarteaucitron_mandatory = "true"; // bool
-$tarteaucitron_mandatoryCta = "true"; // bool
+// $tarteaucitron_privacyUrl = "https://skazy.nc/protection-des-donnees"; // string -> URL personnalisée
+// $tarteaucitron_bodyPosition = "bottom"; // string -> top, bottom
+// $tarteaucitron_hashtag = "#tarteaucitron"; // string -> # personnalisé
+// $tarteaucitron_cookieName = "mag-skazy"; // string -> nom du cookie
+// $tarteaucitron_orientation = "middle"; // string -> top, bottom, middle, popup
+// $tarteaucitron_groupServices = "false"; // bool
+// $tarteaucitron_serviceDefaultState = "wait"; // bool, string -> true, wait, false
+// $tarteaucitron_showAlertSmall = "false"; // bool
+// $tarteaucitron_cookieslist = "false"; // bool
+// $tarteaucitron_showIcon = "true"; // bool
+// $tarteaucitron_iconSrc = ""; // bool
+// $tarteaucitron_iconPosition = "BottomLeft"; // string -> TopLeft, TopRight, BottomLeft, BottomRight
+// $tarteaucitron_adblocker = "false"; // bool
+// $tarteaucitron_denyAllCta = "true"; // bool
+// $tarteaucitron_acceptAllCta = "true"; // bool
+// $tarteaucitron_highPrivacy = "true"; // bool
+// $tarteaucitron_handleBrowserDNTRequest = "false"; // bool
+// $tarteaucitron_removeCredit = "false"; // bool
+// $tarteaucitron_moreInfoLink = "true"; // bool
+// $tarteaucitron_useExternalCss = "false"; // bool
+// $tarteaucitron_useExternalJs = "false"; // bool
+// $tarteaucitron_cookieDomain = ""; // string -> nom de domaine personnalisé
+// $tarteaucitron_readmoreLink = ""; // string -> page en savoir plus personnalisé
+// $tarteaucitron_mandatory = "true"; // bool
+// $tarteaucitron_mandatoryCta = "true"; // bool
+
+$result = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
+
+$tarteaucitron_privacyUrl = $result[0][1]; // string -> URL personnalisée
+$tarteaucitron_bodyPosition = $result[1][1]; // string -> top, bottom
+$tarteaucitron_hashtag = $result[2][1]; // string -> # personnalisé
+$tarteaucitron_cookieName = $result[3][1]; // string -> nom du cookie
+$tarteaucitron_orientation = $result[4][1];// string -> top, bottom, middle, popup
+$tarteaucitron_groupServices = $result[5][1]; // bool
+$tarteaucitron_serviceDefaultState = $result[6][1]; // bool, string -> true, wait, false
+$tarteaucitron_showAlertSmall = $result[7][1]; // bool
+$tarteaucitron_cookieslist = $result[8][1]; // bool
+$tarteaucitron_showIcon = $result[9][1]; // bool
+$tarteaucitron_iconSrc = $result[10][1]; // bool
+$tarteaucitron_iconPosition = $result[11][1]; // string -> TopLeft, TopRight, BottomLeft, BottomRight
+$tarteaucitron_adblocker = $result[12][1]; // bool
+$tarteaucitron_denyAllCta = $result[13][1]; // bool
+$tarteaucitron_acceptAllCta = $result[14][1]; // bool
+$tarteaucitron_highPrivacy = $result[15][1]; // bool
+$tarteaucitron_handleBrowserDNTRequest = $result[16][1]; // bool
+$tarteaucitron_removeCredit = $result[17][1]; // bool
+$tarteaucitron_moreInfoLink = $result[18][1]; // bool
+$tarteaucitron_useExternalCss = $result[19][1]; // bool
+$tarteaucitron_useExternalJs = $result[20][1]; // bool
+$tarteaucitron_cookieDomain = $result[21][1]; // string -> nom de domaine personnalisé
+$tarteaucitron_readmoreLink = $result[22][1]; // string -> page en savoir plus personnalisé
+$tarteaucitron_mandatory = $result[23][1]; // bool
+$tarteaucitron_mandatoryCta = $result[24][1]; // bool
 
 // Affichage des paramètres sur l'admin
 
@@ -320,8 +352,6 @@ $Settings =
 
             
 
-global $wpdb;
-$skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
 $query = "INSERT INTO $skazyrgpd_db 
 (setting_name, setting_description, setting_value, setting_default_value, setting_type, setting_select_possible_values, setting_category) 
 VALUES ";
@@ -352,3 +382,4 @@ foreach($Settings as $setting){
     $values[] = $value;
 }
 $query .= implode(", ", $values). ";";
+

@@ -64,7 +64,7 @@ function skazyrgpd_display_settings($results){ // Prends en paramètre le résul
         echo "<br>";
     }
 }
-function skazyrgpd_reset_settings(){
+function skazyrgpd_reset_settings(){ // Change tout les champs avec leur valeur par défaut
     global $wpdb;
     $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
     $results = $wpdb->get_results("SELECT setting_name, setting_default_value FROM $skazyrgpd_db", ARRAY_N);
@@ -84,11 +84,295 @@ function skazyrgpd_reset_settings(){
 
     echo "<script> window.history.replaceState({}, document.title, '/' + 'wp-admin/admin.php?page=skazyrgpd-admin');
     
-    location.reload(true);</script>";
+    //location.reload(true);</script>";
 }
-function skazyrgpd_install_db(){
+function skazyrgpd_install_db(){ // Supprime et recrée la table {préfixe}skazyrgpd
+    $Settings = 
+        [
+            /*
+            [
+                "nomDuParamètre"
+                "Description du paramètre"
+                "Paramètre actuel (valeur par défaut utilisée)"
+                "Valeur par défaut"
+                "Type de paramètre"
+                "Valeurs possibles si type 'select'"
+                "Catégorie du paramètre"
+            ]
+            */
+            [
+                "backgroundColor",
+                "Couleur de fond du bandeau cookie",
+                "#aaaaaa",
+                "#aaaaaa",
+                "color",
+                "",
+                "apparence"
+            ],
+            [
+                "textColor",
+                "Couleur du texte",
+                "#000000",
+                "#000000",
+                "color",
+                "",
+                "apparence"
+            ],
+            [
+                "privacyUrl",
+                "URL Politique de confidentialité",
+                "" ,
+                "", 
+                "text", 
+                "",
+                "général"
+            ],
+            [
+                "bodyPosition",
+                "Position sur le corps de la page",
+                "bottom",
+                "bottom",
+                "select",
+                ["top","bottom"],
+                "général"
+            ],
+            [
+                "hashtag",
+                "Hashtag (pour ouvrir le panneau)",
+                "#tarteaucitron",
+                "#tarteaucitron",
+                "text", 
+                "",
+                "général"
+            ],
+            [
+                "cookieName",
+                "Nom du cookie pour stocker les paramètres de tarteaucitron" ,
+                "tarteaucitron",
+                "tarteaucitron",
+                "text",
+                "",
+                "général"
+            ],
+            [
+                "orientation",
+                "Position du bandeau",
+                "middle",
+                "middle",
+                "select",
+                ["top", "bottom", "middle", "popup"],
+                "général"
+            ],
+            [
+                "groupServices",
+                "Grouper les service par catégorie",
+                "false",
+                "false",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "serviceDefaultState",
+                "Etat par défaut",
+                "wait",
+                "wait",
+                "select",
+                ["true", "wait", "false"],
+                "général"
+            ],
+            [
+                "showAlertSmall",
+                "Affichages de la petite bannière d'alertes",
+                "false",
+                "false",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "cookiesList",
+                "Affiche la liste des cookies",
+                "true",
+                "true",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "showIcon",
+                "Affiche l'icône pour gérer les cookies",
+                "true",
+                "true",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+
+                "iconSrc",
+                "URL/base64 de l'image (inutilisé)",
+                "",
+                "",
+                "text",
+                "",
+                "général"
+            ],
+            [
+                "iconPosition",
+                "Position de l'icône",
+                "BottomLeft",
+                "BottomLeft",
+                "select",
+                ["TopLeft","TopRight","BottomLeft","BottomRight"],
+                "général"
+            ],
+            [
+                "adblocker",
+                "Alerte de détection de bloqueur de pub",
+                "false",
+                "false",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "denyAllCta",
+                "Afficher le bouton 'Tout refuser'" ,
+                "true",
+                "true",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "acceptAllCta",
+                "Afficher le bouton 'Tout accepter",
+                "true",
+                "true",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "highPrivacy",
+                "Activer le consentement automatique",
+                "false",
+                "false",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "handleBrowserDNTRequest",
+                "Refuser tout les cookies si requête Do Not Track",
+                "false",
+                "false",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "removeCredit",
+                "Retirer le lien de crédit",
+                "false",
+                "false",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "moreInfoLink",
+                "Afficher le lien 'plus d'informations'",
+                "true",
+                "true",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "useExternalCss",
+                "Utiliser le CSS externe",
+                "false",
+                "false",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "useExternalJs",
+                "Utiliser le JS externe",
+                "false",
+                "false",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "cookieDomain",
+                "Nom de domaine pour les cookies partagés (inutilisé)",
+                "",
+                "",
+                "text",
+                "",
+                "général"
+            ],
+            [
+                "readmoreLink",
+                "Lien 'voir plus'",
+                "",
+                "",
+                "text",
+                "",
+                "général"
+            ],
+            [
+                "mandatory",
+                "Afficher le message pour les cookies essentiels",
+                "true",
+                "true",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "mandatoryCta",
+                "Afficher le message pour les cookies non-essentiels",
+                "true",
+                "true",
+                "radio",
+                "",
+                "général"
+            ],
+            [
+                "googleTagManager",
+                "Google Tag Manager",
+                "GTM-XXXXXX",
+                "GTM-XXXXXX",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "googleAnalytics",
+                "Google Analytics",
+                "G-XXXXXXXXX",
+                "G-XXXXXXXXX",
+                "text",
+                "",
+                "service"
+            ],
+            [
+                "googleAnalytics",
+                "Google Analytics",
+                "G-XXXXXXXXX",
+                "G-XXXXXXXXX",
+                "text",
+                "",
+                "service"
+            ],
+        ];
     global $wpdb;
-    global $Settings;
     $skazyrgpd_db = $wpdb->prefix."skazyrgpd"; 
     // Supprime la table dans la BDD
     $wpdb->query("DROP TABLE IF EXISTS $skazyrgpd_db");
@@ -137,292 +421,49 @@ function skazyrgpd_install_db(){
         $values[] = $value;
     }
     $query .= implode(", ", $values). ";";
-    echo "<script>location.reload(true);</script>";
+    $wpdb->query($query);
+    echo "<script> window.history.replaceState({}, document.title, '/' + 'wp-admin/admin.php?page=skazyrgpd-admin');
+    //location.reload(true);</script>";
 }
-
-$Settings = 
-[
-    /*
-    [
-        "nomDuParamètre"
-        "Description du paramètre"
-        "Paramètre actuel (valeur par défaut utilisée)"
-        "Valeur par défaut"
-        "Type de paramètre"
-        "Valeurs possibles si type 'select'"
-        "Catégorie du paramètre"
-    ]
-    */
-    [
-        "backgroundColor",
-        "Couleur de fond du bandeau cookie",
-        "#aaaaaa",
-        "#aaaaaa",
-        "color",
-        "",
-        "apparence"
-    ],
-    [
-        "textColor",
-        "Couleur du texte",
-        "#000000",
-        "#000000",
-        "color",
-        "",
-        "apparence"
-    ],
-    [
-        "privacyUrl",
-        "URL Politique de confidentialité",
-        "" ,
-        "", 
-        "text", 
-        "",
-        "général"
-    ],
-    [
-        "bodyPosition",
-        "Position sur le corps de la page",
-        "bottom",
-        "bottom",
-        "select",
-        ["top","bottom"],
-        "général"
-    ],
-    [
-        "hashtag",
-        "Hashtag (pour ouvrir le panneau)",
-        "#tarteaucitron",
-        "#tarteaucitron",
-        "text", 
-        "",
-        "général"
-    ],
-    [
-        "cookieName",
-        "Nom du cookie pour stocker les paramètres de tarteaucitron" ,
-        "tarteaucitron",
-        "tarteaucitron",
-        "text",
-        "",
-        "général"
-    ],
-    [
-        "orientation",
-        "Position du bandeau",
-        "middle",
-        "middle",
-        "select",
-        ["top", "bottom", "middle", "popup"],
-        "général"
-    ],
-    [
-        "groupServices",
-        "Grouper les service par catégorie",
-        "false",
-        "false",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "serviceDefaultState",
-        "Etat par défaut",
-        "wait",
-        "wait",
-        "select",
-        ["true", "wait", "false"],
-        "général"
-    ],
-    [
-        "showAlertSmall",
-        "Affichages de la petite bannière d'alertes",
-        "false",
-        "false",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "cookieslist ",
-        "Affiche la liste des cookies",
-        "false",
-        "false",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "showIcon",
-        "Affiche l'icône pour gérer les cookies",
-        "true",
-        "true",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-
-        "iconSrc",
-        "URL/base64 de l'image (inutilisé)",
-        "",
-        "",
-        "text",
-        "",
-        "général"
-    ],
-    [
-        "iconPosition",
-        "Position de l'icône",
-        "BottomLeft",
-        "BottomLeft",
-        "select",
-        ["TopLeft","TopRight","BottomLeft","BottomRight"],
-        "général"
-    ],
-    [
-        "adblocker",
-        "Alerte de détection de bloqueur de pub",
-        "false",
-        "false",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "denyAllCta",
-        "Afficher le bouton 'Tout refuser'" ,
-        "true",
-        "true",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "acceptAllCta",
-        "Afficher le bouton 'Tout accepter",
-        "true",
-        "true",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "highPrivacy",
-        "Activer le consentement automatique",
-        "true",
-        "true",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "handleBrowserDNTRequest",
-        "Refuser tout les cookies si requête Do Not Track",
-        "false",
-        "false",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "removeCredit ",
-        "Retirer le lien de crédit",
-        "false",
-        "false",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "moreInfoLink",
-        "Afficher le lien 'plus d'informations'",
-        "true",
-        "true",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "useExternalCss",
-        "Utiliser le CSS externe",
-        "false",
-        "false",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "useExternalJs ",
-        "Utiliser le JS externe",
-        "false",
-        "false",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "cookieDomain",
-        "Nom de domaine pour les cookies partagés (inutilisé)",
-        "",
-        "",
-        "text",
-        "",
-        "général"
-    ],
-    [
-        "readmoreLink",
-        "Lien 'voir plus'",
-        "",
-        "",
-        "text",
-        "",
-        "général"
-    ],
-    [
-        "mandatory",
-        "Afficher le message pour les cookies essentiels",
-        "true",
-        "true",
-        "checkbox",
-        "",
-        "général"
-    ],
-    [
-        "mandatoryCta",
-        "Afficher le message pour les cookies non-essentiels",
-        "true",
-        "true",
-        "checkbox",
-        "",
-        "général"
-    ],
-];
-
 ?>
 <div class="wrap">
     <h1>Paramètres Tarteaucitron</h1>
     <form method="post" action="<?php echo "admin.php?page=skazyrgpd-admin"?>">
-        <h2>Général</h2>
         <input type='submit' class='button button-primary' value='Enregistrer les modifications'><br><br>
-        <?php 
-            include 'skazyrgpd-settings.php';
-            $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-            $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
-            skazyrgpd_display_settings($results);
-        ?>
+        <h2>Général</h2>
+        <div class="skazyrgpd-category">
+            <?php 
+                include 'skazyrgpd-settings.php';
+                $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='général'", ARRAY_N);
+                skazyrgpd_display_settings($results);
+            ?>
+        </div>
         <h2>Apparence</h2>
-        <?php 
-            include 'skazyrgpd-settings.php';
-            $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
-            $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='apparence'", ARRAY_N);
-            skazyrgpd_display_settings($results);
-        ?>
+        <div class="skazyrgpd-category">
+            <?php 
+                include 'skazyrgpd-settings.php';
+                $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='apparence'", ARRAY_N);
+                skazyrgpd_display_settings($results);
+            ?>
+        </div>
+        <h2>Services</h2>
+        <div class="skazyrgpd-category">
+            <?php 
+                include 'skazyrgpd-settings.php';
+                $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
+                $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_category='service'", ARRAY_N);
+                skazyrgpd_display_settings($results);
+            ?>
+        </div>
         <input type='submit' class='button button-primary' value='Enregistrer les modifications'>
     </form>
-    <h2>Paramètres plugin</h2>
-    <input name='reset' class='button button-primary' value='Réinitialiser les paramètres'>
-    <input name='db-install' class='button button-primary' value='Installer / réinitialiser la BDD'>
+    <h2 style="color: #f00;">Zone (pas très) dangereuse</h2>
+    <p>Remet les paramètres à leur valeur par défaut sans changer de configuration.</p>
+    <input name='reset' class='button' value='Réinitialiser les paramètres' style="border-color: #f00; color: #f00;"><br><br>
+    <p>Remet les paramètres à leur valeur par défaut sur une nouvelle configuration.</p>
+    <input name='db-install' class='button button-primary' value='Installer / réinitialiser la BDD' style="background-color: #f00; border-color: #f00;">
     <br>
     <?php
     //echo $query; //affiche la requête SQL pour créer la base de données
@@ -430,12 +471,12 @@ $Settings =
 </div>
 <script>
     document.querySelector("input[name='reset']").addEventListener("click", function(){
-        if(confirm("Voulez-vous vraiment réinitialiser les paramètres ?")){
+        if(confirm("Vous êtes sur le point de réinitialiser les paramètre à leur valeur d'origine.\n\nVoulez-vous continuer ?")){
             window.location.href = "<?= get_site_url() ?>/wp-admin/admin.php?page=skazyrgpd-admin&reset=true";
         }
     });
     document.querySelector("input[name='db-install']").addEventListener("click", function(){
-        if(confirm("Voulez-vous vraiment réinstaller la base de données ?")){
+        if(confirm("Vous êtes sur le point d'installer / de réinitialiser les informations dans la base de donnée du plugin.\n\nVoulez-vous continuer ?")){
             window.location.href = "<?= get_site_url() ?>/wp-admin/admin.php?page=skazyrgpd-admin&db-install=true";
         }
     });
