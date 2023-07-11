@@ -31,9 +31,9 @@ $tarteaucitron_mandatoryCta = $result[24][1];
 
 // Initialisation du module
 
-$url = get_site_url();
+$dir = plugin_dir_url(__FILE__) . "tarteaucitron.js";
 echo "
-<script src='$url/wp-content/plugins/skazy-rgpd/tarteaucitron.js'></script>
+<script src='$dir'></script>
 <script>
 tarteaucitron.init({
      'privacyUrl': '$tarteaucitron_privacyUrl ', /* Privacy policy url */
