@@ -33,7 +33,7 @@ $tarteaucitron_mandatoryCta = $result[24][1];
 
 $url = get_site_url();
 echo "
-<script src='$url/wp-content/plugins/skazyrgpd/tarteaucitron.js'></script>
+<script src='$url/wp-content/plugins/skazy-rgpd/tarteaucitron.js'></script>
 <script>
 tarteaucitron.init({
      'privacyUrl': '$tarteaucitron_privacyUrl ', /* Privacy policy url */
