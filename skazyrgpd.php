@@ -15,12 +15,11 @@ function skazyrgpd_init()
 }
 
 function skazyrgpd_admin_main()
-{
+{ // Hook d'initialisation de la page admin
     require_once "skazyrgpd-admin.php";
 }
 function skazyrgpd_admin_head()
-{
-    $url = plugins_url('skazyrgpd.css', __FILE__);
+{ // Hook d'initialisation des métadonnées da la page admin.
     echo "
     <!-- UIkit CSS -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/css/uikit.min.css' />
@@ -31,7 +30,7 @@ function skazyrgpd_admin_head()
 }
 
 function skazyrgpd_enqueue_styles()
-{
+{ // Hook pour la surcharge CSS du plugin
     wp_enqueue_style('override-tarteaucitron', plugins_url('skazyrgpd-tarteaucitron.css', __FILE__));
 }
 
@@ -41,7 +40,7 @@ function skazyrgpd_init_main_admin_page()
 }
 
 function css_root_load()
-{
+{ // Hook de remplacement des couleurs dans la surcharge CSS
     global $wpdb;
     $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
     $colors = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_category='apparence'", ARRAY_N);

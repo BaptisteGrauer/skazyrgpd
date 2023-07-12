@@ -443,6 +443,16 @@ function skazyrgpd_install_db()
                 "service"
             ],
             [
+                "matomoJsPath",
+                "Matomo chemin JS",
+                "JS_PATH",
+                "JS_PATH",
+                "text",
+                "",
+                "service",
+                "service"
+            ],
+            [
                 "zopimEnabled",
                 "Utiliser Zopim",
                 "false",
@@ -727,11 +737,11 @@ function skazyrgpd_install_db()
                     <h5>Ces actions ci-dessous demanderont une confirmation avant d'être exécutées.</h5>
                     <p>Applique les paramètres par défaut de la configuration actuelle.</p>
                     <input name='reset' class='button' value='Réinitialiser les paramètres'
-                        style="border-color: #f00; color: #f00;"><br><br>
+                        style="border-color: #f00; color: #f00; text-align:center;"><br><br>
                     <p>Supprime et crée à nouveau la table qu'utilise le plugin sur la base de données. Permet de
                         charger une nouvelle configuration.</p>
                     <input name='db-install' class='button button-primary' value='Installer / Réinitialiser la BDD'
-                        style="background-color: #f00; border-color: #f00;">
+                        style="background-color: #f00; border-color: #f00; text-align:center;">
                 </div>
             </li>
         </ul>

@@ -110,13 +110,14 @@ $skazyrgpd_gtm = $services[0][1];
 $skazyrgpd_gajs = $services[1][1];
 $skazyrgpd_matomoID = $services[2][1];
 $skazyrgpd_matomoURL = $services[3][1];
-$skazyrgpd_zopimID = $services[4][1];
-$skazyrgpd_facebookchatID = $services[5][1];
-$skazyrgpd_googlemapsID = $services[6][1];
-$skazyrgpd_googlemapsSnazzyID = $services[7][1];
-$skazyrgpd_googlemapsmapboxToken = $services[8][1];
-$skazyrgpd_googlemapsmapboxJs = $services[9][1];
-$skazyrgpd_customServices = $services[10][1];
+$skazyrgpd_matomoJSPATH = $services[4][1];
+$skazyrgpd_zopimID = $services[5][1];
+$skazyrgpd_facebookchatID = $services[6][1];
+$skazyrgpd_googlemapsID = $services[7][1];
+$skazyrgpd_googlemapsSnazzyID = $services[8][1];
+$skazyrgpd_googlemapsmapboxToken = $services[9][1];
+$skazyrgpd_googlemapsmapboxJs = $services[10][1];
+$skazyrgpd_customServices = $services[11][1];
 
 if ($skazyrgpd_gtmEnabled == "true") {
     echo "<script type='text/javascript'>
@@ -137,8 +138,12 @@ if ($skazyrgpd_matomoEnabled == "true") {
     echo "<script type='text/javascript'>
     tarteaucitron.user.matomoId = $skazyrgpd_matomoID;
     (tarteaucitron.job = tarteaucitron.job || []).push('matomo');
+    tarteaucitron.user.matomoHost = '$skazyrgpd_matomoURL';
     tarteaucitron.user.matomotmUrl = '$skazyrgpd_matomoURL';
     (tarteaucitron.job = tarteaucitron.job || []).push('matomotm');
+    tarteaucitron.user.matomoId = SITE_ID;
+    (tarteaucitron.job = tarteaucitron.job || []).push('matomocloud');
+    tarteaucitron.user.matomoHost = 'YOUR_MATOMO_URL';tarteaucitron.user.matomoCustomJSPath = 'JS_PATH';
     </script>";
 }
 
