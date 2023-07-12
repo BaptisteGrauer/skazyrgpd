@@ -27,10 +27,7 @@ function skazyrgpd_admin_head()
     
     <!-- UIkit JS -->
     <script src='https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit-icons.min.js'></script>
-    
-    <!-- CSS skazyrgpd -->
-    <link rel='stylesheet' href='$url' />";
+    <script src='https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit-icons.min.js'></script>";
 }
 
 function skazyrgpd_enqueue_styles()

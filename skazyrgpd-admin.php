@@ -25,13 +25,13 @@ function skazyrgpd_display_settings($results)
         $setting_type = $result[3];
         $setting_select_possible_values = $result[4];
         if ($setting_type == "text") {
-            echo "<label for='$setting_name'>$setting_description</label><br>";
-            echo "<input type='text' name='$setting_name' value='$setting_value'><br>";
+            echo "<div><label class='uk-display-block' for='$setting_name'>$setting_description</label>";
+            echo "<input type='text' name='$setting_name' value='$setting_value'></div>";
         } elseif ($setting_type == "color") {
-            echo "<label for='$setting_name'>$setting_description</label><br>";
-            echo "<input type='color' name='$setting_name' value='$setting_value'><br>";
+            echo "<div><label class='uk-display-block for='$setting_name'>$setting_description</label>";
+            echo "<input type='color' name='$setting_name' value='$setting_value'></div>";
         } else if ($setting_type == "select") {
-            echo "<label for='$setting_name'>$setting_description</label><br>";
+            echo "<div><label class='uk-display-block for='$setting_name'>$setting_description</label>";
             echo "<select name='$setting_name'>";
             $setting_select_possible_values = explode(",", $setting_select_possible_values);
             $setting_select_possible_values = str_replace("'", "", $setting_select_possible_values);
@@ -45,18 +45,18 @@ function skazyrgpd_display_settings($results)
                     echo "<option value='$setting_select_possible_value'>$setting_select_possible_value</option>";
                 }
             }
-            echo "</select><br>";
+            echo "</select></div>";
         } else if ($setting_type == "textarea") {
-            echo "<label for='$setting_name'>$setting_description</label><br>";
-            echo "<textarea name='$setting_name'>$setting_value</textarea><br>";
+            echo "<div><label class='uk-display-block for='$setting_name'>$setting_description</label>";
+            echo "<textarea cols=100 rows=10 name='$setting_name'>$setting_value</textarea></div>";
         } else if ($setting_type == "radio") {
-            echo "<label for='$setting_name'>$setting_description</label><br><div>";
+            echo "<div><label class='uk-display-block for='$setting_name'>$setting_description</label><div>";
             if ($setting_value == "true") {
-                echo "<input type='radio' name='$setting_name' value='true' checked> Oui<br>";
-                echo "<input type='radio' name='$setting_name' value='false'> Non</div>";
+                echo "<input type='radio' name='$setting_name' value='true' checked> <span class='uk-margin-small-right'>Oui</span>";
+                echo "<input type='radio' name='$setting_name' value='false'> <span class='uk-margin-small-right'>Non</span></div></div>";
             } else {
-                echo "<input type='radio' name='$setting_name' value='true'> Oui<br>";
-                echo "<input type='radio' name='$setting_name' value='false' checked> Non</div>";
+                echo "<input type='radio' name='$setting_name' value='true'> <span class='uk-margin-small-right'>Oui</span>";
+                echo "<input type='radio' name='$setting_name' value='false' checked> <span class='uk-margin-small-right'>Non</span></div></div>";
             }
         }
         echo "<br>";
@@ -683,45 +683,48 @@ function skazyrgpd_install_db()
     <form method="post" action="<?php echo "admin.php?page=skazyrgpd-admin" ?>">
         <ul uk-accordion="multiple: true">
             <li class="uk-open">
-                <a class="uk-accordion-title" href="#">Général</a>
-                <div class="uk-accordion-content">
+                <a class="uk-accordion-title uk-card uk-card-body uk-card-default uk-card-small" href="#">Général</a>
+                <div class="uk-accordion-content uk-card uk-card-body uk-card-default uk-card-small">
                     <div class="skazyrgpd-category">
                         <?php
                         $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
                         $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='général'", ARRAY_N);
                         skazyrgpd_display_settings($results);
                         ?>
+                        <input type="submit" class="button button-primary" value="Enregistrer les modifications">
                     </div>
                 </div>
             </li>
             <li>
-                <a class="uk-accordion-title" href="#">Avancé</a>
-                <div class="uk-accordion-content">
+                <a class="uk-accordion-title uk-card uk-card-body uk-card-default uk-card-small" href="#">Avancé</a>
+                <div class="uk-accordion-content uk-card uk-card-body uk-card-default uk-card-small">
                     <div class="skazyrgpd-category">
                         <?php
                         $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
                         $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='avancé'", ARRAY_N);
                         skazyrgpd_display_settings($results);
                         ?>
+                        <input type="submit" class="button button-primary" value="Enregistrer les modifications">
                     </div>
                 </div>
             </li>
-            <li>
-                <a class="uk-accordion-title" href="#">Services</a>
-                <div class="uk-accordion-content">
+            <li class="uk-open">
+                <a class="uk-accordion-title uk-card uk-card-body uk-card-default uk-card-small" href="#">Services</a>
+                <div class="uk-accordion-content uk-card uk-card-body uk-card-default uk-card-small">
                     <div class="skazyrgpd-category">
                         <?php
                         $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
                         $results = $wpdb->get_results("SELECT setting_name, setting_description, setting_value, setting_type, setting_select_possible_values FROM $skazyrgpd_db WHERE setting_admin_display='service'", ARRAY_N);
                         skazyrgpd_display_settings($results);
                         ?>
+                        <input type="submit" class="button button-primary" value="Enregistrer les modifications">
                     </div>
                 </div>
             </li>
             <li>
-                <a class="uk-accordion-title" href="#">Paramètres plugin</a>
-                <div class="uk-accordion-content">
-                    <h4>Ces actions ci-dessous demanderont une confirmation avant d'être exécutées.</h4>
+                <a class="uk-accordion-title uk-card uk-card-body uk-card-default uk-card-small" href="#">Paramètres plugin</a>
+                <div class="uk-accordion-content uk-card uk-card-body uk-card-default uk-card-small">
+                    <h5>Ces actions ci-dessous demanderont une confirmation avant d'être exécutées.</h5>
                     <p>Applique les paramètres par défaut de la configuration actuelle.</p>
                     <input name='reset' class='button' value='Réinitialiser les paramètres'
                         style="border-color: #f00; color: #f00;"><br><br>
