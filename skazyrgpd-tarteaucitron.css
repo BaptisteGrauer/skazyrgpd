@@ -3,11 +3,11 @@
 /*Hide backdrop*/
 #tarteaucitronRoot:before{
     content: none !important;
-}
+}/*
 #tarteaucitronRoot{
     --tac-primary-bg: #B1D7D8;
     --tac-primary-txt: #212121;
-}
+}*/
 #tarteaucitronAlertBig{
     background-color:#fff!important;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
