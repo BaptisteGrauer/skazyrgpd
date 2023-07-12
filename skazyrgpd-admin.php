@@ -224,7 +224,7 @@ function skazyrgpd_install_db()
             [
 
                 "iconSrc",
-                "URL/base64 de l'image (inutilisé)",
+                "URL/base64 de l'image",
                 "",
                 "",
                 "text",
@@ -334,7 +334,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "cookieDomain",
-                "Nom de domaine pour les cookies partagés (inutilisé)",
+                "Nom de domaine pour les cookies partagés",
                 "",
                 "",
                 "text",
@@ -708,7 +708,7 @@ function skazyrgpd_install_db()
                     </div>
                 </div>
             </li>
-            <li class="uk-open">
+            <li>
                 <a class="uk-accordion-title uk-card uk-card-body uk-card-default uk-card-small" href="#">Services</a>
                 <div class="uk-accordion-content uk-card uk-card-body uk-card-default uk-card-small">
                     <div class="skazyrgpd-category">
