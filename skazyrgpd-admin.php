@@ -103,7 +103,7 @@ function skazyrgpd_install_db()
             */
             [
                 "backgroundColor",
-                "Couleur de fond du bandeau cookie",
+                "Couleur de fond du bandeau cookie.",
                 "#aaaaaa",
                 "#aaaaaa",
                 "color",
@@ -113,7 +113,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "textColor",
-                "Couleur du texte",
+                "Couleur du texte du bandeau cookie.",
                 "#000000",
                 "#000000",
                 "color",
@@ -123,7 +123,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "privacyUrl",
-                "URL Politique de confidentialité",
+                "URL de la politique de confidentialité.",
                 "",
                 "",
                 "text",
@@ -133,7 +133,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "bodyPosition",
-                "Position sur le corps de la page (body)",
+                "Position sur le corps de la page HTML (body).",
                 "bottom",
                 "bottom",
                 "select",
@@ -143,7 +143,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "hashtag",
-                "Hashtag (pour ouvrir le panneau)",
+                "ID CSS du bandeau.",
                 "#tarteaucitron",
                 "#tarteaucitron",
                 "text",
@@ -153,7 +153,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "cookieName",
-                "Nom du cookie pour stocker les paramètres de tarteaucitron",
+                "Nom du cookie pour stocker les paramètres de tarteaucitron.",
                 "tarteaucitron",
                 "tarteaucitron",
                 "text",
@@ -163,7 +163,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "orientation",
-                "Position du bandeau",
+                "Position du bandeau sur la page.",
                 "middle",
                 "middle",
                 "select",
@@ -173,7 +173,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "groupServices",
-                "Grouper les service par catégorie",
+                "Grouper les services par catégorie dans le bandeau.",
                 "false",
                 "false",
                 "radio",
@@ -183,7 +183,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "serviceDefaultState",
-                "Etat par défaut",
+                "État d'activation des services par défaut ('wait' pour demander à l'utilisateur').",
                 "wait",
                 "wait",
                 "select",
@@ -193,7 +193,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "showAlertSmall",
-                "Affichages de la petite bannière d'alertes",
+                "Afficher de la petite bannière d'alertes (en bas à droite de la page).",
                 "false",
                 "false",
                 "radio",
@@ -203,7 +203,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "cookiesList",
-                "Affiche la liste des cookies",
+                "Afficher la liste des cookies.",
                 "true",
                 "true",
                 "radio",
@@ -213,7 +213,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "showIcon",
-                "Affiche l'icône pour gérer les cookies",
+                "Afficher l'icône pour faire apparaître le bandeau.",
                 "true",
                 "true",
                 "radio",
@@ -224,9 +224,9 @@ function skazyrgpd_install_db()
             [
 
                 "iconSrc",
-                "URL/base64 de l'image",
-                "",
-                "",
+                "URL de l'icône cookie.",
+                "/wp-content/plugins/skazy-rgpd/cookie.png",
+                "/wp-content/plugins/skazy-rgpd/cookie.png",
                 "text",
                 "",
                 "général",
@@ -234,7 +234,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "iconPosition",
-                "Position de l'icône",
+                "Position de l'icône sur la page.",
                 "BottomLeft",
                 "BottomLeft",
                 "select",
@@ -244,7 +244,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "adblocker",
-                "Alerte de détection de bloqueur de pub",
+                "Afficher une alerte si un bloqueur de publicité est détecté.",
                 "false",
                 "false",
                 "radio",
@@ -254,7 +254,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "denyAllCta",
-                "Afficher le bouton 'Tout refuser'",
+                "Afficher le bouton 'Tout refuser' sur le bandeau.",
                 "true",
                 "true",
                 "radio",
@@ -264,7 +264,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "acceptAllCta",
-                "Afficher le bouton 'Tout accepter",
+                "Afficher le bouton 'Tout accepter' sur le bandeau.",
                 "true",
                 "true",
                 "radio",
@@ -274,7 +274,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "highPrivacy",
-                "Désactiver l'auto consentement",
+                "Désactiver l'auto-consentement/activation des services après être descendu sur la page.",
                 "true",
                 "true",
                 "radio",
@@ -284,7 +284,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "handleBrowserDNTRequest",
-                "Refuser tout les cookies si requête Do Not Track",
+                "Refuser automatiquement tout les cookies si les navigateurs envoient une requête 'Do Not Track'.",
                 "false",
                 "false",
                 "radio",
@@ -294,9 +294,9 @@ function skazyrgpd_install_db()
             ],
             [
                 "removeCredit",
-                "Retirer le lien de crédit",
-                "false",
-                "false",
+                "Retirer le lien menant vers <a href='https://tarteaucitron.io'>tarteaucitron.io</a>.",
+                "true",
+                "true",
                 "radio",
                 "",
                 "général",
@@ -304,9 +304,9 @@ function skazyrgpd_install_db()
             ],
             [
                 "moreInfoLink",
-                "Afficher le lien 'plus d'informations'",
-                "true",
-                "true",
+                "Afficher le lien 'plus d'informations'.",
+                "false",
+                "false",
                 "radio",
                 "",
                 "général",
@@ -314,7 +314,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "useExternalCss",
-                "Utiliser le CSS externe",
+                "Utiliser une feuille de style CSS externe.",
                 "false",
                 "false",
                 "radio",
@@ -324,7 +324,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "useExternalJs",
-                "Utiliser le JS externe",
+                "Utiliser un script JS externe",
                 "false",
                 "false",
                 "radio",
@@ -334,7 +334,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "cookieDomain",
-                "Nom de domaine pour les cookies partagés",
+                "Nom de domaine (pour l'utilisation des cookies partagés).",
                 "",
                 "",
                 "text",
@@ -344,7 +344,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "readmoreLink",
-                "Lien 'voir plus'",
+                "URL du lien 'Voir plus'.",
                 "",
                 "",
                 "text",
@@ -354,7 +354,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "mandatory",
-                "Afficher le message pour les cookies essentiels",
+                "Afficher les cookies essentiels.",
                 "true",
                 "true",
                 "radio",
@@ -364,7 +364,7 @@ function skazyrgpd_install_db()
             ],
             [
                 "mandatoryCta",
-                "Afficher le message pour les cookies non-essentiels",
+                "Afficher le bouton 'accepter' désactivé quands les cookies essentiels sont affichés.",
                 "true",
                 "true",
                 "radio",
