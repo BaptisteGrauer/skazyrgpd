@@ -60,7 +60,7 @@ tarteaucitron.init({
      'cookieslist': $tarteaucitron_cookieslist , /* Show the cookie list */
     
      'showIcon': $tarteaucitron_showIcon , /* Show cookie icon to manage cookies */
-     //'iconSrc': '$tarteaucitron_iconSrc ', /* Optionnal: URL or base64 encoded image */
+     'iconSrc': '$tarteaucitron_iconSrc ', /* Optionnal: URL or base64 encoded image */
      'iconPosition': '$tarteaucitron_iconPosition', /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
 
      'adblocker': $tarteaucitron_adblocker , /* Show a Warning if an adblocker is detected */

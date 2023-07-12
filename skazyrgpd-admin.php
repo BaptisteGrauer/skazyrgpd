@@ -274,9 +274,9 @@ function skazyrgpd_install_db()
             ],
             [
                 "highPrivacy",
-                "Accepter automatiquement tout les cookies",
-                "false",
-                "false",
+                "Désactiver l'auto consentement",
+                "true",
+                "true",
                 "radio",
                 "",
                 "général",
@@ -737,10 +737,6 @@ function skazyrgpd_install_db()
         </ul>
         <input type="submit" class="button button-primary" value="Enregistrer les modifications">
     </form>
-    <br>
-    <?php
-    //echo $query; //affiche la requête SQL pour créer la base de données
-    ?>
 </div>
 <script>
     document.querySelector("input[name='reset']").addEventListener("click", function () {
