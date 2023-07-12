@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Skazy RGPD (Tarteaucitron)
- * Description: Module de gestion des cookies pour Skazy
+ * Description: Plugin de gestion de services/cookies pour respect du RGPD.
  * Author: Skazy
  * Author URI: https://skazy.nc
  * Requires at least: 6.2
- * Requires PHP: 8.2
- * Version: 1.0 dev
+ * Requires PHP: 8
+ * Version: 1.0
  */
 
 function skazyrgpd_init()
@@ -14,10 +14,19 @@ function skazyrgpd_init()
     require_once "skazyrgpd-tarteaucitron.php";
 }
 
+//
+
+function skazyrgpd_init_main_admin_page()
+{ // Hook d'initialisation de la page admin
+    add_menu_page('Skazy RGPD - Général', 'Skazy RGPD', 'manage_options', "skazyrgpd-admin", "skazyrgpd_admin_main");
+} // ↓ Appele la fonction en dessous ↓
 function skazyrgpd_admin_main()
 { // Hook d'initialisation de la page admin
     require_once "skazyrgpd-admin.php";
 }
+
+//
+
 function skazyrgpd_admin_head()
 { // Hook d'initialisation des métadonnées da la page admin.
     echo "
@@ -29,18 +38,14 @@ function skazyrgpd_admin_head()
     <script src='https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit-icons.min.js'></script>";
 }
 
+//
+
 function skazyrgpd_enqueue_styles()
 { // Hook pour la surcharge CSS du plugin
     wp_enqueue_style('override-tarteaucitron', plugins_url('skazyrgpd-tarteaucitron.css', __FILE__));
 }
-
-function skazyrgpd_init_main_admin_page()
-{ // Hook d'initialisation de la page admin
-    add_menu_page('Skazy RGPD - Général', 'Skazy RGPD', 'manage_options', "skazyrgpd-admin", "skazyrgpd_admin_main");
-}
-
 function css_root_load()
-{ // Hook de remplacement des couleurs dans la surcharge CSS
+{ // Hook de remplacement des paramètres dans la surcharge CSS
     global $wpdb;
     $skazyrgpd_db = $wpdb->prefix . "skazyrgpd";
     $colors = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_category='apparence'", ARRAY_N);
@@ -59,9 +64,11 @@ function css_root_load()
     echo $primaryColor;
 }
 
+//
+
 add_action('admin_menu', 'skazyrgpd_init_main_admin_page'); // Ajout de la page admin
 add_action('wp_head', 'skazyrgpd_init'); // Initialisation du plugin
 add_action('admin_head', 'skazyrgpd_admin_head'); // Ajoute Uikit dans le head de l'admin
-add_action('wp_enqueue_scripts', 'skazyrgpd_enqueue_styles'); // CSS tarteaucitron
-add_action('wp_head', 'css_root_load'); // Ajoute le css du plugin
+add_action('wp_enqueue_scripts', 'skazyrgpd_enqueue_styles'); // Surcharge CSS tarteaucitron
+add_action('wp_head', 'css_root_load'); // Ajoute des paramètres à la surcharge CSS de tarteaucitron
 ?>

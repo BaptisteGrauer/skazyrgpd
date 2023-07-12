@@ -1,7 +1,8 @@
 <?php 
-// PAS TOUCHE AU NOM DU FICHIER !!!!
+// NE PAS TOUCHER AU NOM DU FICHIER !!11!!1!11!1!! merci :)
+
 if(!defined('WP_UNINSTALL_PLUGIN')){ // Evite de d'exécuter le processus de désinstallation en cas d'appel direct
-    die;
+    die();
 }
 
 // Si le processus de désinstallation est appelé

@@ -232,6 +232,7 @@ if ($skazyrgpd_googlemapssnazzyEnabled == "true") {
 if ($skazyrgpd_googlemapsmapboxEnabled == "true") {
     echo "";
 }
+
 if ($skazyrgpd_customservicesEnabled == "true") {
     echo "<script>$skazyrgpd_customServices</script>";
 }
