@@ -48,7 +48,7 @@ function skazyrgpd_display_settings($results)
             echo "</select></div>";
         } else if ($setting_type == "textarea") {
             echo "<div><label class='uk-display-block for='$setting_name'>$setting_description</label>";
-            echo "<textarea cols=100 rows=10 name='$setting_name'>$setting_value</textarea></div>";
+            echo "<textarea cols=70 rows=10 name='$setting_name'>$setting_value</textarea></div>";
         } else if ($setting_type == "radio") {
             echo "<div><label class='uk-display-block for='$setting_name'>$setting_description</label><div>";
             if ($setting_value == "true") {
@@ -124,8 +124,8 @@ function skazyrgpd_install_db()
             [
                 "privacyUrl",
                 "URL de la politique de confidentialité.",
-                "",
-                "",
+                "URL à modifier",
+                "URL à modifier",
                 "text",
                 "",
                 "général",
@@ -373,6 +373,26 @@ function skazyrgpd_install_db()
                 "avancé"
             ],
             [
+                "middleBarHead",
+                "Titre du bandeau cookie",
+                "Utilisation des cookies",
+                "Utilisation des cookies",
+                "text",
+                "",
+                "général",
+                "général"
+            ],
+            [
+                "alertBigPrivacy",
+                "Contenu du bandau cookie",
+                "Ce site utilise des cookies et vous donne le contrôle sur ceux que vous souhaitez activer",
+                "Ce site utilise des cookies et vous donne le contrôle sur ceux que vous souhaitez activer",
+                "textarea",
+                "",
+                "général",
+                "général"
+            ],
+            [
                 "googleTagManagerEnabled",
                 "Utiliser Google Tag Manager",
                 "false",
@@ -551,7 +571,7 @@ function skazyrgpd_install_db()
                 "",
                 "service",
                 "service"
-            ],
+            ],/*
             [
                 "googleMapsIFrameEnabled",
                 "Utiliser Google Maps IFrame",
@@ -611,7 +631,7 @@ function skazyrgpd_install_db()
                 "",
                 "service",
                 "service"
-            ],
+            ],*/
             [
                 "addCustomJsEnabled",
                 "Utiliser du JS personnalisé pour ajouter des services",

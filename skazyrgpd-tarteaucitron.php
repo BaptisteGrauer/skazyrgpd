@@ -31,6 +31,8 @@ $tarteaucitron_cookieDomain = $result[21][1];
 $tarteaucitron_readmoreLink = $result[22][1];
 $tarteaucitron_mandatory = $result[23][1];
 $tarteaucitron_mandatoryCta = $result[24][1];
+$tarteaucitron_middleBarHead = $result[25][1];
+$tarteaucitron_alertBigPrivacy = $result[26][1];
 
 // Paramètres couleurs bandeau
 
@@ -44,6 +46,11 @@ echo "
 <script src='https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.13.0/tarteaucitron.min.js'></script>
 <link href='https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.13.0/css/tarteaucitron.min.css' rel='stylesheet'>
 <script>
+tarteaucitronCustomText = {
+    'middleBarHead' : '$tarteaucitron_middleBarHead',
+    'alertBigPrivacy' : '$tarteaucitron_alertBigPrivacy',
+  };
+  
 tarteaucitron.init({
      'privacyUrl': '$tarteaucitron_privacyUrl', /* Privacy policy url */
      'bodyPosition': '$tarteaucitron_bodyPosition', /* or top to bring it as first element for accessibility */
@@ -98,11 +105,11 @@ $skazyrgpd_youtubeapiEnabled = $enabledServices[5][1];
 $skazyrgpd_vimeoEnabled = $enabledServices[6][1];
 $skazyrgpd_facebooklikeboxEnabled = $enabledServices[7][1];
 $skazyrgpd_facebookchatEnabled = $enabledServices[8][1];
-$skazyrgpd_googlemapsEnabled = $enabledServices[9][1];
+$skazyrgpd_googlemapsEnabled = $enabledServices[9][1];/*
 $skazyrgpd_googlemapsiframeEnabled = $enabledServices[10][1];
 $skazyrgpd_googlemapssnazzyEnabled = $enabledServices[11][1];
-$skazyrgpd_googlemapsmapboxEnabled = $enabledServices[12][1];
-$skazyrgpd_customservicesEnabled = $enabledServices[13][1];
+$skazyrgpd_googlemapsmapboxEnabled = $enabledServices[12][1];*/
+$skazyrgpd_customservicesEnabled = $enabledServices[10][1];
 
 $services = $wpdb->get_results("SELECT setting_name, setting_value FROM $skazyrgpd_db WHERE setting_type='text' OR setting_type='textarea' AND setting_category='service'", ARRAY_N);
 
@@ -191,7 +198,7 @@ if ($skazyrgpd_googlemapsEnabled == "true") {
     (tarteaucitron.job = tarteaucitron.job || []).push('googlemaps');
     </script>";
 }
-
+/*
 if ($skazyrgpd_googlemapsiframeEnabled == "true") {
     echo "<script>
     tarteaucitron.services.googlemapsembed = {
@@ -232,7 +239,7 @@ if ($skazyrgpd_googlemapssnazzyEnabled == "true") {
 if ($skazyrgpd_googlemapsmapboxEnabled == "true") {
     echo "";
 }
-
+*/
 if ($skazyrgpd_customservicesEnabled == "true") {
     echo "<script>$skazyrgpd_customServices</script>";
 }
