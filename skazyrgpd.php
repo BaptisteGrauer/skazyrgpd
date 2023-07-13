@@ -42,7 +42,7 @@ function skazyrgpd_admin_head()
 
 function skazyrgpd_enqueue_styles()
 { // Hook pour la surcharge CSS du plugin
-    wp_enqueue_style('override-tarteaucitron', plugins_url('skazyrgpd-tarteaucitron.css', __FILE__));
+    wp_enqueue_style('override-tarteaucitron', plugins_url('skazyrgpd.css', __FILE__));
 }
 function css_root_load()
 { // Hook de remplacement des paramètres dans la surcharge CSS
