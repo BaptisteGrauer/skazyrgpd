@@ -4,7 +4,7 @@
 
 Télécharger le dépôt dans un dossier compressé .zip
 
-Sur WordPress :
+Sur votre projet WordPress :
 - Aller dans "Extensions" > "Ajouter" > "Téléverser une extension",
 - Sélectionner le dossier compressé ou le glisser-déposer sur la page,
 - Cliquez sur "installer maintenant".
@@ -20,6 +20,8 @@ Les options ne sont pas visible sur cette page parce que la table ou elle sont s
 
 Cela va créer la table skazyrgpd dans la base de données WordPress et va créer toutes les options du plugins dans celle-ci.
 
+Et voilà ! Le plugin à été installé et activé avec succès.
+
 ## Liste des paramètres disponibles
 
 ### Général
@@ -33,7 +35,7 @@ Cela va créer la table skazyrgpd dans la base de données WordPress et va crée
 
 ### Avancé
 
-- Position dans le <body>
+- Position dans le body HTML
 - ID CSS du bandeau
 - Nom du cookie pour stocker les paramètres
 - Grouper les services par catégorie
@@ -72,3 +74,8 @@ Services pouvant être activés par défaut sur ce plugin
 - Facebook chat
 - Google Maps
 - Services personnalisés
+
+### Plugin
+
+- Réinitialiser les paramètres à leur valeur par défaut
+- Réinitialiser la table du plugin de la BDD
